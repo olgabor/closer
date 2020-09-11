@@ -1,5 +1,4 @@
 .flaSQL/
 __pycache__/ 
 .DS_store
-.env
 /env 
