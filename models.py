@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/closer'
 
 db = SQLAlchemy(app)
 
-
+#Users model 
 class User(db.Model): 
     __tablename__ = 'users'
 
