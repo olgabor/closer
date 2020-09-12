@@ -4,13 +4,14 @@ from flask_sqlalchemy import SQLAlchemy
 import os 
 
 #Homepage route 
-@app.route('/home/')
+@app.route('/home')
 def home():
     return render_template('home.html')
 
-# @app.route('/projects/', methods=['GET', 'POST'])
-# def show_projects():
-#     all_projects = Project.query.all()
+@app.route('/projects', methods=['GET', 'POST'])
+def all_projects():
+    # projects = Project.query.all()
+    return render_template('projects.html')
     
 @app.route('/project/new', methods=['GET','POST'])
 def new_project():
