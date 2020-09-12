@@ -3,6 +3,11 @@ from flask import Flask, request, jsonify, render_template, url_for, session
 from flask_sqlalchemy import SQLAlchemy 
 import os 
 
+# user register 
+@app.route('/register/', methods=['GET','POST'])
+def register():
+    return render_template('register.html')
+
 #Homepage route 
 @app.route('/home')
 def home():
@@ -16,3 +21,4 @@ def all_projects():
 @app.route('/project/new', methods=['GET','POST'])
 def new_project():
     return render_template('new_project.html')
+
