@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import datetime
+from datetime import datetime
 import enum 
+from enum import Enum
+from sqlalchemy import Integer, Enum
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -13,15 +15,13 @@ db = SQLAlchemy(app)
 
 
 class User(db.Model): 
-    __tablename__ = 'user'
+    __tablename__ = 'users'
 
-    id = db.Column(db.Intger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(100)) 
     password = db.Column(db.String(100))
-    #realtionship with Project table 
-    # project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
-    project = relationship("Project", backref="user", cascade="all, delete")
+    project = db.relationship("Project", backref="users", cascade="all, delete")
 
     def __repr__(self):
             return f'User(id={self.id}, email="{self.email}", name="{self.name}" , projects="{self.project_id}")'
@@ -30,43 +30,43 @@ class User(db.Model):
 class Project(db.Model): 
     __tablename__ = 'project'
 
-    id = db.Column(db.Intger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
     description = db.Column(db.String(250)) 
-    author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL')) #if user gets deleted this field gets deleted 
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='SET NULL')) #if user gets deleted this field gets deleted 
     
     #realtionship to Ticket 
-    tickets = relationship("Ticket", backref="project", cascade="all, delete")
+    ticket = db.relationship("Ticket", backref="project", cascade="all, delete")
 
 
     def __repr__(self):
             return f'Project(id={self.id}, title="{self.title}", description="{self.description}" , author_id="{self.author_id}")'
 
 
-class Status(enum.Enum):
-    'To Do' = 1
-    'In Progress' = 2
-    'Done'  = 3
-    'Cancelded' = 4 
+class Ticket_Status(enum.Enum):
+    ToDo = 'To Do'
+    InProgress = 'In Progress'
+    Done = 'Done'
+    Cancelded = 'Cancelded'
 
-class Priority(enum.Enum):
-    'Higher' = 1
-    'High' = 2
-    'Medium'  = 3
-    'Low' = 4 
+class Ticket_Priority(enum.Enum):
+    Higher = 'Higher'
+    High = 'High'
+    Medium = 'Medium'
+    Low = 'Low'
 
 class Ticket(db.Model): 
     __tablename__ = 'ticket'
 
-    id = db.Column(db.Intger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     summary = db.Column(db.Text) 
-    created_on = db.Column(db.Time, TIEMESTAMP, default=now, timezone=True) 
-    author_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL')) #if user gets deleted this field gets deleted 
+    date_posted = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='SET NULL')) #if user gets deleted this field gets deleted 
     project_id = db.Column(db.Integer, db.ForeignKey('project.id', ondelete='SET NULL')) #if project gets deleted this field gets deleted 
     image = db.Column(db.String(300))
-    status = db.Enum(Status)
-    priority = db.Enum(Priority)
-    due_date = db.Column(db.Time, TIEMESTAMP, timezone=True) 
+    ticket_status = db.Column(db.Enum(Ticket_Status), default=Ticket_Status.ToDo, nullable=False)
+    ticket_priority = db.Column(db.Enum(Ticket_Priority), default=Ticket_Priority.Medium,  nullable=False)
+    due_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False) 
 
     def __repr__(self):
             return f'Ticket(id={self.id}, summary="{self.summary}", created_on="{self.created_on}" , author_id="{self.author_id}",  project_id ="{self.project_id}", status="{self.status}", priority="{self.priority}")'
