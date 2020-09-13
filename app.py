@@ -2,6 +2,8 @@ from models import app, User, Project, Ticket
 from flask import Flask, request, jsonify, render_template, url_for, session 
 from flask_sqlalchemy import SQLAlchemy 
 import os 
+from crud.user import get_users
+from crud.project import get_all_projects
 
 # user register 
 @app.route('/register', methods=['GET','POST'])
@@ -16,12 +18,15 @@ def login():
 #Homepage route 
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    users = get_users()
+    return users
+    # return render_template('home.html', users=users)
 
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
-    # projects = Project.query.all()
-    return render_template('projects.html')
+    projects = get_all_projects()
+    return projects
+    # return render_template('projects.html')
     
 @app.route('/project/new', methods=['GET','POST'])
 def new_project():

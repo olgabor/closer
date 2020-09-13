@@ -24,8 +24,17 @@ class User(db.Model):
     project = db.relationship("Project", backref="users", cascade="all, delete")
 
     def __repr__(self):
-            return f'User(id={self.id}, email="{self.email}", name="{self.name}" , projects="{self.project_id}")'
+            return f'User(id={self.id}, email="{self.email}", name="{self.name}")'
+    
+    # def user_as_dict(self):
+    #     return [{
+    #         id: self.id,
+    #         email: self.email,
+    #         name: self.name
+    #         }]
 
+    def user_as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
     
 class Project(db.Model): 
     __tablename__ = 'project'
@@ -42,6 +51,9 @@ class Project(db.Model):
     def __repr__(self):
             return f'Project(id={self.id}, title="{self.title}", description="{self.description}" , author_id="{self.author_id}")'
 
+    def project_as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+    
 
 class Ticket_Status(enum.Enum):
     ToDo = 'To Do'
