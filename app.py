@@ -1,12 +1,10 @@
 from models import app, User, Project, Ticket
 from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash 
 from flask_sqlalchemy import SQLAlchemy 
-from werkzeug.security import generate_password_hash, check_password_hash
 import os 
-from crud.user import get_users, create_user
+from crud.user import get_users, create_user, login_user
 from crud.project import get_all_projects, get_project 
 from models import User, db 
-
 
 
 # user register page 
@@ -17,34 +15,14 @@ def register():
     if request.method == 'POST': 
         return create_user()
 
-
-#user post route 
-# @app.route('/register', methods=['POST'])
-# def post_register():
-#     email = request.form.get('email')
-#     name = request.form.get('name')
-#     password = request.form.get('password')
-
-#     #check if user exists in database 
-#     user = User.query.filter_by(email=email).first()
-#     print(user)
-
-#     if user:
-#         flash('Email address already exists')
-#         return redirect(url_for('login'))
-
-#     #create new user 
-#     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
-#     #add user to database 
-#     db.session.add(new_user)
-#     db.session.commit()
-#     return redirect(url_for('login'))
-
-
 #log in 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def user_login():
+    return login_user()
 
 #Homepage route 
 @app.route('/home')
