@@ -7,10 +7,9 @@ def get_all_projects():
     return jsonify(results)
 
 
-
 def get_project(id):
-    user = Project.query.get(id)
+    project = Project.query.get(id)
     if project:
-      return jsonify(project.as_dict())
+      return jsonify(project.project_as_dict())
     else:
-      raise Exception('Error getting project at {}'.format(id))
+        raise Exception('Error getting project at {}'.format(id))

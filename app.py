@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template, url_for, session
 from flask_sqlalchemy import SQLAlchemy 
 import os 
 from crud.user import get_users
-from crud.project import get_all_projects
+from crud.project import get_all_projects, get_project 
 
 # user register 
 @app.route('/register', methods=['GET','POST'])
@@ -27,6 +27,13 @@ def all_projects():
     projects = get_all_projects()
     return projects
     # return render_template('projects.html')
+
+#return one project 
+@app.route('/projects/<int:id>')
+def get_one_project(id):
+    project = get_project(id)
+    return project
+
     
 @app.route('/project/new', methods=['GET','POST'])
 def new_project():
