@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template, url_for, session, re
 from flask_sqlalchemy import SQLAlchemy 
 import os 
 from crud.user import get_users, create_user, post_user
-from crud.project import get_all_projects, get_project 
+from crud.project import get_all_projects, get_project, create_project
 from models import User, db
 from flask_login import login_required, current_user, logout_user
 
@@ -29,20 +29,23 @@ def login():
 @login_required
 def logout(): 
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 #Homepage route 
 @app.route('/home')
-# @login_required
 def home():
     users = get_users()
-    return render_template('home.html', users=users, name=current_user.name) 
+    if current_user.is_authenticated: 
+        return render_template('home.html', users=users, name=current_user.name) 
+    else: 
+        return render_template('home.html') 
+        
 
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
     projects = get_all_projects()
     return projects
-    # return render_template('projects.html')
+    
 
 #return one project 
 @app.route('/projects/<int:id>')
@@ -50,9 +53,12 @@ def get_one_project(id):
     project = get_project(id)
     return project
 
-@app.route('/project/new', methods=['GET','POST'])
+@app.route('/projects/new', methods=['GET', 'POST'])
 def new_project():
-    return render_template('new_project.html')
+    if request.method == 'GET':
+        return render_template('new_project.html')
+    if request.method == 'POST':
+        return create_project()
 
 #ticket GET, PUT, and DELETE routes 
 @app.route('/tickets/<int:id>', methods=['GET', 'PUT', 'DELETE'])

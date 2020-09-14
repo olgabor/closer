@@ -4,7 +4,8 @@ from datetime import datetime
 import enum 
 from enum import Enum
 from sqlalchemy import Integer, Enum
-from flask_login import UserMixin, LoginManager
+from flask_login import UserMixin, LoginManager, AnonymousUserMixin
+
 
 app = Flask(__name__)
 # login = LoginManager(app)
@@ -12,6 +13,7 @@ app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
+# login_manager.anonymous_user = MyAnonymousUser
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True

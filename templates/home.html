@@ -5,7 +5,7 @@
   <form className="login-form" >
       <input/> 
       <a class="btn btn-outline-primary" href="{{ url_for('register') }}">REGISTER</a>
-      <p className="message"> Already registered? <a href="/login"> Log in</a></p>
+      <p className="message"> Already registered? <a href="{{ url_for('login') }}"> Log in</a></p>
   </form>
 </div>
 
