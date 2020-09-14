@@ -33,7 +33,7 @@ def logout():
 
 #Homepage route 
 @app.route('/home')
-@login_required
+# @login_required
 def home():
     users = get_users()
     return render_template('home.html', users=users, name=current_user.name) 
