@@ -1,6 +1,7 @@
 from models import app, db, User 
 from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash 
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import current_user, login_user
 
 
 # return all users from database
@@ -29,10 +30,10 @@ def create_user():
     return redirect(url_for('login'))
 
 
-def login_user():
+def post_user():
     email = request.form.get('email')
     password = request.form.get('password')
-    # remember = True if request.form.get('remember') else False
+    remember = True if request.form.get('remember') else False
 
     user = User.query.filter_by(email=email).first()
 
@@ -41,6 +42,8 @@ def login_user():
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         return redirect(url_for('register')) # if the user doesn't exist or password is wrong, reload the page
+
+    login_user(user, remember=remember)
 
     # if the above check passes, then we know the user has the right credentials
     return redirect(url_for('all_projects'))

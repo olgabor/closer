@@ -1,10 +1,10 @@
 from models import app, User, Project, Ticket
-from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash 
+from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash
 from flask_sqlalchemy import SQLAlchemy 
 import os 
-from crud.user import get_users, create_user, login_user
+from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project 
-from models import User, db 
+from models import User, db
 
 
 # user register page 
@@ -16,13 +16,12 @@ def register():
         return create_user()
 
 #log in 
-@app.route('/login')
+@app.route('/login', methods=['GET','POST'] )
 def login():
-    return render_template('login.html')
-
-@app.route('/login', methods=['POST'])
-def user_login():
-    return login_user()
+    if request.method == 'GET': 
+        return render_template('login.html')
+    if request.method == 'POST': 
+        return post_user()
 
 #Homepage route 
 @app.route('/home')
@@ -50,3 +49,16 @@ def new_project():
 @app.route('/tickets/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def ticket_show_put_delete(id):
     return "SHOW, EDIT, DELETE TICKET"
+
+
+
+#WTF forms 
+# class RegistrationForm(Form):
+#     username = StringField('Username', [validators.Length(min=4, max=25)])
+#     email = StringField('Email Address', [validators.Length(min=6, max=35)])
+#     password = PasswordField('New Password', [
+#         validators.DataRequired(),
+#         validators.EqualTo('confirm', message='Passwords must match')
+#     ])
+#     confirm = PasswordField('Repeat Password')
+#     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])

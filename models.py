@@ -4,17 +4,25 @@ from datetime import datetime
 import enum 
 from enum import Enum
 from sqlalchemy import Integer, Enum
+from flask_login import UserMixin, LoginManager
 
 app = Flask(__name__)
+# login = LoginManager(app)
+
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+login_manager.init_app(app)
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/closer'
 
+# SetS the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 db = SQLAlchemy(app)
 
 #Users model 
-class User(db.Model): 
+class User(UserMixin, db.Model): 
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -84,4 +92,7 @@ class Ticket(db.Model):
             return f'Ticket(id={self.id}, summary="{self.summary}", created_on="{self.created_on}" , author_id="{self.author_id}",  project_id ="{self.project_id}", status="{self.status}", priority="{self.priority}")'
 
   
-
+#user loaded function 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
