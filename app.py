@@ -5,6 +5,7 @@ import os
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project 
 from models import User, db
+from flask_login import login_required, current_user
 
 
 # user register page 
@@ -25,9 +26,10 @@ def login():
 
 #Homepage route 
 @app.route('/home')
+@login_required
 def home():
     users = get_users()
-    return render_template('home.html', users=users)
+    return render_template('home.html', users=users, name=current_user.name)
 
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
