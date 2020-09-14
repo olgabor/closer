@@ -5,7 +5,7 @@ import os
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project 
 from models import User, db
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user
 
 
 # user register page 
@@ -16,7 +16,7 @@ def register():
     if request.method == 'POST': 
         return create_user()
 
-#log in 
+#log in user 
 @app.route('/login', methods=['GET','POST'] )
 def login():
     if request.method == 'GET': 
@@ -24,12 +24,19 @@ def login():
     if request.method == 'POST': 
         return post_user()
 
+#logout user 
+@app.route('/logout')
+@login_required
+def logout(): 
+    logout_user()
+    return redirect(url_for('login'))
+
 #Homepage route 
 @app.route('/home')
 @login_required
 def home():
     users = get_users()
-    return render_template('home.html', users=users, name=current_user.name)
+    return render_template('home.html', users=users, name=current_user.name) 
 
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
