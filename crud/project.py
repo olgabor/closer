@@ -1,11 +1,11 @@
 from models import db, app, Project 
 from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash 
-
+from flask_login import current_user
 
 def get_all_projects():
-    all_projects = Project.query.all()
+    all_projects =  Project.query.filter(Project.author_id == current_user.id)
     results = [project.project_as_dict() for project in all_projects] 
-    return jsonify(results)
+    return jsonify(results )
 
 
 def get_project(id):
@@ -14,6 +14,7 @@ def get_project(id):
       return jsonify(project.project_as_dict())
     else:
         raise Exception('Error getting project at {}'.format(id))
+
 
 def create_project(): 
     title = request.form.get('title')

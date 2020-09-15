@@ -1,11 +1,12 @@
 from models import app, User, Project, Ticket
 from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash
 from flask_sqlalchemy import SQLAlchemy 
+from flask_login import login_required, current_user, logout_user
 import os 
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project, create_project
 from models import User, db
-from flask_login import login_required, current_user, logout_user
+
 
 
 # user register page 
