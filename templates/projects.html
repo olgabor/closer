@@ -14,21 +14,38 @@
     
 <div id="accordion">
     {% for project in projects %}
+   
     <div class="card">
       <div class="card-header" id="headingOne">
         <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#{{project.id }}" aria-expanded="true" aria-controls="collapseOne">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#{{project.id }}" aria-expanded="true" aria-controls="{{project.id }}">
             {{project.title }}
           </button>
         </h5>
       </div>
-  
-      <div id="{{project.id }}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      
+      <div id="{{project.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
             {{project.description }}
+            <br>
+            <br>
+            <button type="button" class="btn btn-info" href="#" >add new ticket </button> 
+ 
+            <div class="btn-group dropright">
+                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Actions 
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Update </a>
+                    <a class="dropdown-item" href="#">Complete</a>
+                    <a class="dropdown-item" href="#">Delete</a>
+                </div>
+              </div>
+
         </div>
       </div>
     </div>
+    <br>
 
     {% endfor %}
 
