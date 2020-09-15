@@ -5,8 +5,7 @@ from flask_login import login_required, current_user, logout_user
 import os 
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project, create_project
-from models import User, db
-
+from models import User, db, Project 
 
 
 # user register page 
@@ -45,7 +44,8 @@ def home():
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
     projects = get_all_projects()
-    return projects
+    # return projects
+    return render_template('projects.html', projects=projects) 
     
 
 #return one project 

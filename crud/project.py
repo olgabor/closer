@@ -2,12 +2,6 @@ from models import db, app, Project
 from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash 
 from flask_login import current_user
 
-def get_all_projects():
-    all_projects =  Project.query.filter(Project.author_id == current_user.id)
-    results = [project.project_as_dict() for project in all_projects] 
-    return jsonify(results )
-
-
 def get_project(id):
     project = Project.query.get(id)
     if project:
@@ -32,3 +26,9 @@ def create_project():
     db.session.add(new_project)
     db.session.commit()
     return redirect(url_for('all_projects'))
+
+def get_all_projects():
+    all_projects =  Project.query.filter(Project.author_id == current_user.id)
+    results = [project.project_as_dict() for project in all_projects] 
+    # return jsonify(results)
+    return all_projects
