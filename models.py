@@ -94,7 +94,9 @@ class Ticket(db.Model):
     def __repr__(self):
             return f'Ticket(id={self.id}, name="{self.summary}", description="{self.description}",  date_posted="{self.date_posted}" , author_id="{self.author_id}",  project_id ="{self.project_id}", status="{self.status}", priority="{self.priority}", due_date="{self.due_date}")'
 
-  
+    def ticket_as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}  
+
 #user loaded function 
 @login_manager.user_loader
 def load_user(user_id):
