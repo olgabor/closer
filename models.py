@@ -81,17 +81,18 @@ class Ticket(db.Model):
     __tablename__ = 'ticket'
 
     id = db.Column(db.Integer, primary_key=True)
-    summary = db.Column(db.Text) 
+    name = db.Column(db.String(100)) 
+    description = db.Column(db.Text) 
     date_posted = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='SET NULL')) #if user gets deleted this field gets deleted 
     project_id = db.Column(db.Integer, db.ForeignKey('project.id', ondelete='SET NULL')) #if project gets deleted this field gets deleted 
-    image = db.Column(db.String(300))
-    ticket_status = db.Column(db.Enum(Ticket_Status), default=Ticket_Status.ToDo, nullable=False)
+    image = db.Column(db.String(500))
     ticket_priority = db.Column(db.Enum(Ticket_Priority), default=Ticket_Priority.Medium,  nullable=False)
+    ticket_status = db.Column(db.Enum(Ticket_Status), default=Ticket_Status.ToDo, nullable=False)
     due_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False) 
 
     def __repr__(self):
-            return f'Ticket(id={self.id}, summary="{self.summary}", created_on="{self.created_on}" , author_id="{self.author_id}",  project_id ="{self.project_id}", status="{self.status}", priority="{self.priority}")'
+            return f'Ticket(id={self.id}, name="{self.summary}", description="{self.description}",  date_posted="{self.date_posted}" , author_id="{self.author_id}",  project_id ="{self.project_id}", status="{self.status}", priority="{self.priority}", due_date="{self.due_date}")'
 
   
 #user loaded function 
