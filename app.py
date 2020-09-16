@@ -5,7 +5,7 @@ from flask_login import login_required, current_user, logout_user
 import os 
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project, create_project
-from crud.ticket import create_ticket 
+from crud.ticket import create_ticket, get_all_tickets
 from models import User, db, Project, Ticket 
 
 
@@ -53,8 +53,8 @@ def new_project():
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
     projects = get_all_projects()
-    # return projects
-    return render_template('projects.html', projects=projects) 
+    tickets =  get_all_tickets()
+    return render_template('projects.html', projects=projects, tickets=tickets ) 
     
 
 #return one project 

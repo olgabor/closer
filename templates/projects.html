@@ -3,6 +3,8 @@
 {% block body %}
   <h1> show all projects on this page </h1>
     <h3>Hi, {{ current_user.name }}!</h3>
+    {{all_projects}}
+
 <!-- 
 <ul class='list-group'>
 {% for project in projects %}
@@ -41,7 +43,15 @@
                     <a class="dropdown-item" href="#">Delete</a>
                 </div>
               </div>
-
+                <div>
+                    <ul>
+                        {% for ticket in tickets %}
+                         {% if ticket.project_id ==  project.id  %}
+                            <li> {{ ticket.name }} {{ ticket.author_id }} {{ ticket.project_id }} {{project.id}} </li>
+                            {% endif %}
+                    </ul>
+                    {% endfor %}
+                </div>
         </div>
       </div>
     </div>
@@ -69,7 +79,6 @@
                 <div class="form-group">
                   <label for="">Priority</label>
                   <select name="ticket_priority" class="form-control" id="exampleFormControlSelect1">
-                    <!-- <option value='Higher'>Higher</option> -->
                     <option>Higher</option> 
                     <option>High</option>
                     <option>Medium</option>

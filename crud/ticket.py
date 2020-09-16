@@ -12,13 +12,10 @@ def create_ticket():
     project_id = request.form.get('project_id')
     ticket_priority = request.form.get('ticket_priority')
     ticket_status = request.form.get('ticket_status')
-    # ticket_status = 'Completed'
     time = request.form.get('due_date')
     due_date = datetime.strptime(time, '%Y-%m-%d')
     # date_posted = request.form.get('date_posted')
 
-    print('ticket_priority , ', ticket_priority )
-    print('ticket_status , ', ticket_status )
 
     # ticket = Ticket.query.filter_by(name=name).first() 
 
@@ -50,8 +47,12 @@ def create_ticket():
 #     else:
 #         raise Exception('Error getting project at {}'.format(id))
 
-# def get_all_tickets(): 
-#     all_tickets =  Ticket.query.filter( Ticket.author_id == current_user.id))
-#     results = [ticket.ticket_as_dict() for ticket in all_tickets] 
-#     return all_tickets
+def get_all_tickets(): 
+
+    # all_tickets =  Ticket.query.filter( Ticket.author_id == current_user.id))
+    # results = [ticket.ticket_as_dict() for ticket in all_tickets] 
+    all_tickets =  Ticket.query.filter((Ticket.author_id == current_user.id) & (Ticket.project_id == Project.id))
+    tickets = [ticket.ticket_as_dict() for ticket in  all_tickets]
+
+    return  tickets
 
