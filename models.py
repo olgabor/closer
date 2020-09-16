@@ -64,18 +64,18 @@ class Project(db.Model):
     def project_as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
     
+class Ticket_Priority(enum.Enum):
+    Higher = "Higher"
+    High = "High"
+    Medium = "Medium"
+    Low = "Low"
 
 class Ticket_Status(enum.Enum):
-    ToDo = 'To Do'
-    InProgress = 'In Progress'
-    Done = 'Done'
-    Cancelded = 'Cancelded'
-
-class Ticket_Priority(enum.Enum):
-    Higher = 'Higher'
-    High = 'High'
-    Medium = 'Medium'
-    Low = 'Low'
+    ToDo = "ToDo"
+    InProgress = "InProgress"
+    Done = "Done"
+    Completed = "Completed"
+    Canceled = "Canceled"
 
 class Ticket(db.Model): 
     __tablename__ = 'ticket'
@@ -87,12 +87,12 @@ class Ticket(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='SET NULL')) #if user gets deleted this field gets deleted 
     project_id = db.Column(db.Integer, db.ForeignKey('project.id', ondelete='SET NULL')) #if project gets deleted this field gets deleted 
     image = db.Column(db.String(500))
-    ticket_priority = db.Column(db.Enum(Ticket_Priority), default=Ticket_Priority.Medium,  nullable=False)
-    ticket_status = db.Column(db.Enum(Ticket_Status), default=Ticket_Status.ToDo, nullable=False)
-    due_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False) 
+    ticket_priority = db.Column(db.Enum(Ticket_Priority), default=Ticket_Priority.Medium,  nullable=True )
+    ticket_status = db.Column(db.Enum(Ticket_Status), default=Ticket_Status.ToDo, nullable=True )
+    due_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=True ) 
 
     def __repr__(self):
-            return f'Ticket(id={self.id}, name="{self.summary}", description="{self.description}",  date_posted="{self.date_posted}" , author_id="{self.author_id}",  project_id ="{self.project_id}", status="{self.status}", priority="{self.priority}", due_date="{self.due_date}")'
+            return f'Ticket(id={self.id}, name="{self.name}", description="{self.description}",  date_posted="{self.date_posted}" , author_id="{self.author_id}",  project_id ="{self.project_id}", due_date="{self.due_date}")'
 
     def ticket_as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}  

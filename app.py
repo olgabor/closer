@@ -5,7 +5,8 @@ from flask_login import login_required, current_user, logout_user
 import os 
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project, create_project
-from models import User, db, Project 
+from crud.ticket import create_ticket 
+from models import User, db, Project, Ticket 
 
 
 # user register page 
@@ -40,6 +41,14 @@ def home():
     else: 
         return render_template('home.html') 
         
+#renders 'projects' page and manages creating new project         
+@app.route('/projects/new', methods=['GET', 'POST'])
+def new_project():
+    if request.method == 'GET':
+        return render_template('new_project.html')
+    if request.method == 'POST':
+        return create_project()
+
 
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
@@ -54,19 +63,26 @@ def get_one_project(id):
     project = get_project(id)
     return project
 
-@app.route('/projects/new', methods=['GET', 'POST'])
-def new_project():
+#craetes a new ticket 
+@app.route('/ticket/new', methods=['GET', 'POST'])
+def new_ticket():
     if request.method == 'GET':
-        return render_template('new_project.html')
+        return render_template('new_ticket.html')
     if request.method == 'POST':
-        return create_project()
+        return create_ticket()
+
 
 #ticket GET, PUT, and DELETE routes 
 @app.route('/tickets/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def ticket_show_put_delete(id):
     return "SHOW, EDIT, DELETE TICKET"
 
-
+@app.errorhandler(Exception)
+def unhandled_exception(e):
+  app.logger.error('Unhandled Exception: %s', (e))
+  message_str = e.__str__()
+  #return jsonify(message=message_str.split(':')[0])
+  return jsonify(message=message_str.split(':'))
 
 #WTF forms 
 # class RegistrationForm(Form):

@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+</div>
+<div class="modal-body">
+    <!-- Form to add new ticket -->
+    <form method="POST" action='/ticket/new'>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Name</label>
+          <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        <div class="form-group">
+          <label for="">Priority</label>
+          <select name="ticket_priority" class="form-control" id="exampleFormControlSelect1">
+            <option value="Higher">Higher</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for=""> Set Status</label>
+            <select name="ticket_status" class="form-control" id="exampleFormControlSelect1">
+              <option value="ToDo">To Do</option>
+              <option value="InProgress">In Progress</option>
+              <option value="Done">Done</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <!-- <label for="exampleFormControlInput1">Due Date</label> -->
+            <!-- <input name="due_date" type="date" class="form-control" id="date" placeholder=""> -->
+          </div>
+        <!-- Form hidden fields  -->
+                <input class="input" type="hidden" name="author_id" value="{{current_user.id}}">
+                <input class="input" type="hidden" name="project_id" value="2">
+                <!-- <input class="input" type="hidden" name="date_posted"> -->
+               <input class="input" type="hidden" name="image" value="test"> 
+        <button  class="btn btn-info">Save</button>
+      </form>
+</div>
+<div class="column is-4 is-offset-4">
+    <h1>Hi, {{ current_user.name }}!</h1>
+    <h3 class="title">create new project</h3>
+    <div class="box">
+        <form method="POST" action="/ticket/new">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="name" placeholder="title" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="description" placeholder="description" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="hidden" name="author_id" value="{{current_user.id}}">
+                </div>
+            </div>  
+                <input class="input" type="hidden" name="author_id" value="{{current_user.id}}">
+                <input class="input" type="hidden" name="project_id" value="2">
+                <input class="input" type="hidden" name="image" value="test"> 
+
+            <button class="button is-block is-info is-large is-fullwidth"> Create </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
