@@ -65,17 +65,30 @@ class Project(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
     
 class Ticket_Priority(enum.Enum):
-    Higher = "Higher"
-    High = "High"
-    Medium = "Medium"
-    Low = "Low"
+    Higher = 1
+    High = 2
+    Medium = 3
+    Low = 4
 
 class Ticket_Status(enum.Enum):
-    ToDo = "ToDo"
-    InProgress = "InProgress"
-    Done = "Done"
-    Completed = "Completed"
-    Canceled = "Canceled"
+    ToDo = 1
+    InProgress = 2
+    Done = 3
+    Completed = 4
+
+
+# class Ticket_Priority(enum.Enum):
+#     Higher = "Higher"
+#     High = "High"
+#     Medium = "Medium"
+#     Low = "Low"
+
+# class Ticket_Status(enum.Enum):
+#     ToDo = "ToDo"
+#     InProgress = "InProgress"
+#     Done = "Done"
+#     Completed = "Completed"
+#     Canceled = "Canceled"
 
 class Ticket(db.Model): 
     __tablename__ = 'ticket'
