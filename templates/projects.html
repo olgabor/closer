@@ -22,6 +22,7 @@
         <h5 class="mb-0">
           <button class="btn btn-link" data-toggle="collapse" data-target="#{{project.id}}" aria-expanded="true" aria-controls="{{project.id }}">
             {{project.title }}
+            {{project}}
           </button>
         </h5>
       </div>
@@ -31,7 +32,61 @@
             {{project.description }}
             <br>
             <br>
-            <button type="button" data-toggle="modal" class="btn btn-info"  data-target="#exampleModalCenter" href="#" >add new ticket </button> 
+            <button type="button" data-toggle="modal" class="btn btn-info"  data-target=#{{project.title}}  href="#" >add new ticket </button> 
+
+                     <!-- Modal -->
+                     <div class="modal fade" id={{project.title }} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle"> Add new item to your project <strong>  {{project.title }} {{project.id }} </strong> </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Form to add new ticket -->
+                                <form method="POST" action='/ticket/new'>
+                                    <div class="form-group">
+                                      <label for="exampleFormControlInput1">Name</label>
+                                      <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Description</label>
+                                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                    <div class="form-group">
+                                      <label for="">Priority</label>
+                                      <select name="ticket_priority" class="form-control" id="exampleFormControlSelect1">
+                                        <option>Higher</option> 
+                                        <option>High</option>
+                                        <option>Medium</option>
+                                        <option>Low</option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for=""> Set Status</label>
+                                        <select name="ticket_status" class="form-control" id="exampleFormControlSelect1">
+                                          <option>ToDo</option>
+                                          <option>InProgress</option>
+                                          <option>Done</option>
+                                        </select>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="exampleFormControlInput1">Due Date</label>
+                                        <input name="due_date" type="date" class="form-control" id="date">
+                                        <input class="input" type="hidden" name="author_id" value="{{current_user.id}}">
+                                        <input class="input" type="hidden" name="project_id" value={{ project.id }}>
+                                        <input class="input" type="hidden" name="date_posted">
+                                      </div>
+                                    <button class="btn btn-info">Save</button>
+                                  </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
  
             <div class="btn-group dropright">
                 <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,62 +107,10 @@
                     </ul>
                     {% endfor %}
                 </div>
+   
         </div>
       </div>
     </div>
-        <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle"> Add new item to your project <strong>  {{project.title }}</strong> </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <!-- Form to add new ticket -->
-            <form method="POST" action='/ticket/new'>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Name</label>
-                  <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Description</label>
-                    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
-                <div class="form-group">
-                  <label for="">Priority</label>
-                  <select name="ticket_priority" class="form-control" id="exampleFormControlSelect1">
-                    <option>Higher</option> 
-                    <option>High</option>
-                    <option>Medium</option>
-                    <option>Low</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                    <label for=""> Set Status</label>
-                    <select name="ticket_status" class="form-control" id="exampleFormControlSelect1">
-                      <option>ToDo</option>
-                      <option>InProgress</option>
-                      <option>Done</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Due Date</label>
-                    <input name="due_date" type="date" class="form-control" id="date">
-                  </div>
-                <!-- Form hidden fields  -->
-                        <input class="input" type="hidden" name="author_id" value="{{current_user.id}}">
-                        <input class="input" type="hidden" name="project_id" value="{{project.id}}">
-                        <input class="input" type="hidden" name="date_posted">
-                <button class="btn btn-info">Save</button>
-              </form>
-        </div>
-      </div>
-    </div>
-  </div>
-<br>
 
 
     {% endfor %}
