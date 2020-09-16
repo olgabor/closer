@@ -74,8 +74,7 @@ class Ticket_Status(enum.Enum):
     ToDo = 1
     InProgress = 2
     Done = 3
-    Completed = 4
-
+    
 
 # class Ticket_Priority(enum.Enum):
 #     Higher = "Higher"

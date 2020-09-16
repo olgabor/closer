@@ -12,10 +12,13 @@ def create_ticket():
     project_id = request.form.get('project_id')
     ticket_priority = request.form.get('ticket_priority')
     ticket_status = request.form.get('ticket_status')
+    # ticket_status = 'Completed'
     time = request.form.get('due_date')
     due_date = datetime.strptime(time, '%Y-%m-%d')
     # date_posted = request.form.get('date_posted')
-   
+
+    print('ticket_priority , ', ticket_priority )
+    print('ticket_status , ', ticket_status )
 
     # ticket = Ticket.query.filter_by(name=name).first() 
 
@@ -33,6 +36,7 @@ def create_ticket():
         # date_posted=date_posted,
         due_date=due_date
         )
+  
     db.session.add(new_ticket)
     db.session.commit()
     t = new_ticket 
