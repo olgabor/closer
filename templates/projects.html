@@ -34,6 +34,34 @@
             <br>
             <button type="button" data-toggle="modal" class="btn btn-info"  data-target=#{{project.title}}  href="#" >add new ticket </button> 
 
+                 <div class="btn-group dropright">
+                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Actions 
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Update</a>
+                    <a class="dropdown-item" href="#">Complete</a>
+                    <a class="dropdown-item" href="#">Delete</a>
+                </div>
+              </div>
+         
+           <div>
+            <ul class="list-group ">
+                <li class="list-group-item d-inline-flex p-2 justify-content-between align-items-center">
+                    ToDo
+                  <span class="badge badge-primary badge-pill">14</span>
+                </li>
+                <li class="list-group-item d-inline-flex p-2 justify-content-between align-items-center">
+                    InProgress
+                  <span class="badge badge-primary badge-pill">2</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Done
+                  <span class="badge badge-primary badge-pill">1</span>
+                </li>
+              </ul>
+           </div>
+
                      <!-- Modal -->
                      <div class="modal fade" id={{project.title }} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -87,17 +115,7 @@
                       </div>
 
 
- 
-            <div class="btn-group dropright">
-                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Actions 
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Update </a>
-                    <a class="dropdown-item" href="#">Complete</a>
-                    <a class="dropdown-item" href="#">Delete</a>
-                </div>
-              </div>
+
                 <div>
                     <ul>
                         {% for ticket in tickets %}
