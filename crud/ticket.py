@@ -53,6 +53,21 @@ def get_all_tickets():
     # results = [ticket.ticket_as_dict() for ticket in all_tickets] 
     all_tickets =  Ticket.query.filter((Ticket.author_id == current_user.id) & (Ticket.project_id == Project.id))
     tickets = [ticket.ticket_as_dict() for ticket in  all_tickets]
+    
+    Todo_tickets = Ticket.query.filter((Ticket.ticket_status == 'ToDo'))
 
     return  tickets
 
+
+def delete_ticket(id, pid):
+
+    ticket = Ticket.query.get(id)
+    if ticket:
+        db.session.delete(ticket)
+        db.session.commit()
+        
+        return redirect(url_for('project_show_update_delete', id=pid))
+    else:
+        return Exception('No ticket at id {}'.format(id))
+
+    

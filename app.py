@@ -5,7 +5,7 @@ from flask_login import login_required, current_user, logout_user
 import os 
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project, create_project, update_project
-from crud.ticket import create_ticket, get_all_tickets
+from crud.ticket import create_ticket, get_all_tickets, delete_ticket
 from models import User, db, Project, Ticket 
 
 
@@ -87,9 +87,17 @@ def new_ticket():
 
 
 #ticket GET, PUT, and DELETE routes 
-@app.route('/tickets/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def ticket_show_put_delete(id):
-    return "SHOW, EDIT, DELETE TICKET"
+@app.route('/projects/<int:pid>/tickets/<int:id>', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def ticket_show_put_delete(id, pid):
+    print('Line 92', request.method, id , pid)
+    if request.method == 'GET':
+        print(request.method, id , pid)
+        return delete_ticket(id, pid)
+    else: 
+        
+        return "SHOW, EDIT, DELETE TICKET"
+
+
 
 @app.errorhandler(Exception)
 def unhandled_exception(e):
