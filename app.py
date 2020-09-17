@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_required, current_user, logout_user
 import os 
 from crud.user import get_users, create_user, post_user
-from crud.project import get_all_projects, get_project, create_project
+from crud.project import get_all_projects, get_project, create_project, update_project
 from crud.ticket import create_ticket, get_all_tickets
 from models import User, db, Project, Ticket 
 
@@ -39,7 +39,7 @@ def home():
     if current_user.is_authenticated: 
         return render_template('home.html', users=users, name=current_user.name) 
     else: 
-        return render_template('home.html') 
+        return render_template('home.html')
         
 #renders 'projects' page and manages creating new project         
 @app.route('/projects/new', methods=['GET', 'POST'])
@@ -49,19 +49,34 @@ def new_project():
     if request.method == 'POST':
         return create_project()
 
-
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
     projects = get_all_projects()
     tickets =  get_all_tickets()
     return render_template('projects.html', projects=projects, tickets=tickets ) 
-    
 
-#return one project 
-@app.route('/projects/<int:id>')
-def get_one_project(id):
-    project = get_project(id)
-    return project
+
+@app.route('/projects/<id>', methods=['GET', 'PUT'])
+def project_show_update_delete(id):
+
+
+#   if request.method == 'GET':
+#       return get_project(id)
+    if request.method == 'PUT':
+
+        project = Project.query.get(id)
+        print(project)
+        if project:
+            project.title = request.form.get('title')
+            project.description = request.form.get('description')
+
+            db.session.commit()
+
+    return redirect(url_for('all_projects'))
+
+    #   return update_project(id=project.id, title=request.form.get('title'), description=request.form.get('description'))
+
+
 
 #craetes a new ticket 
 @app.route('/ticket/new', methods=['GET', 'POST'])
@@ -83,14 +98,3 @@ def unhandled_exception(e):
   message_str = e.__str__()
   #return jsonify(message=message_str.split(':')[0])
   return jsonify(message=message_str.split(':'))
-
-#WTF forms 
-# class RegistrationForm(Form):
-#     username = StringField('Username', [validators.Length(min=4, max=25)])
-#     email = StringField('Email Address', [validators.Length(min=6, max=35)])
-#     password = PasswordField('New Password', [
-#         validators.DataRequired(),
-#         validators.EqualTo('confirm', message='Passwords must match')
-#     ])
-#     confirm = PasswordField('Repeat Password')
-#     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])

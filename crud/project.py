@@ -32,3 +32,31 @@ def get_all_projects():
     results = [project.project_as_dict() for project in all_projects] 
     # return jsonify(results)
     return all_projects
+
+# def update_project(id, **update_values):
+#   project = Project.query.get(id)
+
+#   print("PROJECT", project)
+#   if project:
+#     for key, value in update_values.items():
+#       setattr(project, key, value)
+#     db.session.commit()
+#     print("PROJECT " , project  )
+#     return jsonify(project.project_as_dict())
+#   else:
+#     raise Exception('No Project at id {}'.format(id))
+
+def update_project(id, title, description):
+    print(id, title, description)
+
+    project = Project.query.get(id=id)
+    print(project.id, project.title )
+    if project:
+        project.title = title
+        project.description = description
+        
+        db.session.commit()
+        return redirect(url_for('all_projects'))
+
+    else:
+        raise Exception('No Project at id {}'.format(id))
