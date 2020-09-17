@@ -11,15 +11,9 @@
 <h3>Hi, {{ current_user.name }}!</h3>
 
 <h3>  {{project.id, project.title, project.description, project.author_id }} </h3>
-
-<h2>Tickets</h2>
-    
     </div>
 
-
-
-
-    <div class="col-11" style="background-color:powderblue;" >.col-9 
+    <div class="col-11" style="background-color:grey;" >.col-9 
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">All tasks</a>
@@ -28,21 +22,34 @@
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Complete </a>
             </div>
           </nav>
+
           <div class="tab-content" id="nav-tabContent">
             <div
              class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         
              <ul class='list-group'>
                 {% for ticket in tickets %}
-                    <li class='list-group-item'>  {{ticket.name }} , 
-                                                {{ticket.description }} , 
-                                                {{ticket.date_posted }}, 
-                                                {{ticket.author_id }}, 
-                                                {{ticket.project_id }}, 
-                                                {{ticket.image }}, 
-                                                {{ticket.ticket_status }}, 
-                                                {{ticket.due_date }}
-                                            </li>
+                    <li style="list-style:none">  
+                        <div class="alert alert-primary" role="alert">
+                            {{ticket.name }} , 
+                            {{ticket.description }} , 
+                            {{ticket.date_posted }}, 
+                            {{ticket.author_id }}, 
+                            {{ticket.project_id }}, 
+                            {{ticket.image }}, 
+                            {{ticket.ticket_status }}, 
+                            {{ticket.due_date }}
+
+                            <div >
+                                <a href='/ticket/{{ticket.id}}'>
+                                <svg width="1em" height="1em"  viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg></a>
+                            </div>
+                          
+                                                  
+                      </div> </li>
                 {% endfor %}
                 </ul>
             </div>
