@@ -6,26 +6,56 @@
 
 <h3>  {{project.id, project.title, project.description, project.author_id }} </h3>
 
-<!-- {{tickets}} -->
-
-
-
 <h2>Tickets</h2>
-<ul class='list-group'>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">All tasks</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">ToDo</a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">In Progress </a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Complete </a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div
+     class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+     <ul class='list-group'>
+        {% for ticket in tickets %}
+            <li class='list-group-item'>  {{ticket.name }} , 
+                                        {{ticket.description }} , 
+                                        {{ticket.date_posted }}, 
+                                        {{ticket.author_id }}, 
+                                        {{ticket.project_id }}, 
+                                        {{ticket.image }}, 
+                                        {{ticket.ticket_status }}, 
+                                        {{ticket.due_date }}
+                                    </li>
+        {% endfor %}
+        </ul>
+
+
+
+
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+  </div>
+
+<!-- <ul class='list-group'>
     {% for ticket in tickets %}
         <li class='list-group-item'>  {{ticket.name }} , 
                                     {{ticket.description }} , 
                                     {{ticket.date_posted }}, 
                                     {{ticket.author_id }}, 
                                     {{ticket.project_id }}, 
-                                    {{ticket.project_id }}, 
                                     {{ticket.image }}, 
                                     {{ticket.ticket_status }}, 
                                     {{ticket.due_date }}
                                 </li>
     {% endfor %}
-    </ul>
+    </ul> -->
 
 
-
+  
 {% endblock %}
