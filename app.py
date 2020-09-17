@@ -52,15 +52,15 @@ def new_project():
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
     projects = get_all_projects()
-    tickets =  get_all_tickets()
+    tickets =  get_all_tickets(id)
     return render_template('projects.html', projects=projects, tickets=tickets ) 
 
 
-@app.route('/projects/<id>', methods=['GET', 'PUT'])
+@app.route('/projects/<int:id>', methods=['GET', 'PUT'])
 def project_show_update_delete(id):
     if request.method == 'GET':
         project = get_project(id)
-        tickets =  get_all_tickets()
+        tickets =  get_all_tickets(id)
         return render_template('show_project.html', project=project, tickets=tickets ) 
     if request.method == 'PUT':
 
@@ -87,7 +87,7 @@ def new_ticket():
 
 
 #ticket GET, PUT, and DELETE routes 
-@app.route('/projects/<int:pid>/tickets/<int:id>', methods=['GET', 'PUT', 'POST', 'DELETE'])
+@app.route('/projects/<int:pid>/tickets/<int:id>', methods=['GET', 'PUT', 'POST'])
 def ticket_show_put_delete(id, pid):
     print('Line 92', request.method, id , pid)
     if request.method == 'GET':

@@ -47,17 +47,16 @@ def create_ticket():
 #     else:
 #         raise Exception('Error getting project at {}'.format(id))
 
-def get_all_tickets(): 
+def get_all_tickets(id): 
 
     # all_tickets =  Ticket.query.filter( Ticket.author_id == current_user.id))
     # results = [ticket.ticket_as_dict() for ticket in all_tickets] 
-    all_tickets =  Ticket.query.filter((Ticket.author_id == current_user.id) & (Ticket.project_id == Project.id))
+    all_tickets =  Ticket.query.filter((Ticket.author_id == current_user.id) and (Ticket.project_id == id))
     tickets = [ticket.ticket_as_dict() for ticket in  all_tickets]
     
-    Todo_tickets = Ticket.query.filter((Ticket.ticket_status == 'ToDo'))
+    # Todo_tickets = Ticket.query.filter((Ticket.ticket_status == 'ToDo'))
 
-    return  tickets
-
+    return  tickets 
 
 def delete_ticket(id, pid):
 
