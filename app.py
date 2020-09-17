@@ -58,14 +58,13 @@ def all_projects():
 
 @app.route('/projects/<id>', methods=['GET', 'PUT'])
 def project_show_update_delete(id):
-
-
-#   if request.method == 'GET':
-#       return get_project(id)
+    if request.method == 'GET':
+        project = get_project(id)
+        tickets =  get_all_tickets()
+        return render_template('show_project.html', project=project, tickets=tickets ) 
     if request.method == 'PUT':
 
         project = Project.query.get(id)
-        print(project)
         if project:
             project.title = request.form.get('title')
             project.description = request.form.get('description')

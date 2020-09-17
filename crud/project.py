@@ -5,7 +5,8 @@ from flask_login import current_user
 def get_project(id):
     project = Project.query.get(id)
     if project:
-      return jsonify(project.project_as_dict())
+    #   return jsonify(project.project_as_dict())
+      return project
     else:
         raise Exception('Error getting project at {}'.format(id))
 
