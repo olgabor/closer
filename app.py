@@ -6,8 +6,7 @@ import os
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project, create_project, update_project
 from crud.ticket import create_ticket, get_all_tickets, delete_ticket, get_tickets_by_status, update_ticket
-from models import User, db, Project, Ticket 
-
+from models import User, db, Project, Ticket
 
 # user register page 
 @app.route('/register', methods=['GET','POST'])
@@ -53,8 +52,7 @@ def new_project():
 def all_projects():
     projects = get_all_projects()
     tickets =  get_all_tickets(id)
-    
-    return render_template('projects.html', projects=projects, tickets=tickets) 
+    return render_template('projects1.html', projects=projects, tickets=tickets) 
 
 
 @app.route('/projects/<int:id>', methods=['GET', 'PUT'])

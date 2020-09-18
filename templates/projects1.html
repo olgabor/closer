@@ -3,20 +3,24 @@
 {% block body %}
 <nav aria-label="breadcrumb">
 
-    <div class="progress" style="height: 20px;"> 
+    <div class="progress" style="height: 10px;"> 
         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="6"> 3/4 </div>
       </div>
     <ol class="breadcrumb">
       <li class="breadcrumb-item active" aria-current="page">Home</li>
-      
     </ol>
   
 
   </nav>
   
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+  <nav aria-label="breadcrumb" >
+    <ol class="breadcrumb" style="height: 150px; border-radius: 10px;">
       <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+      <button class="btn btn-link" data-toggle="collapse" data-target= aria-expanded="true" >
+        <h4> Project Title ></h4> 
+       
+       </button>
       <li class="breadcrumb-item active" aria-current="page">Library</li>
     </ol>
   </nav>

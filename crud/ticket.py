@@ -60,7 +60,6 @@ def get_tickets_by_status(status):
     all_tickets =  Ticket.query.filter( (Ticket.ticket_status == status) )
     tickets = [ticket.ticket_as_dict() for ticket in  all_tickets]
     # (Ticket.author_id == current_user.id) and (Ticket.project_id == id) and
-    print('LINE 63 get_ToDo_tickets(id)!!!!!!!!!!!!!!!!!!!!!!' , tickets)
     # Todo_tickets = Ticket.query.filter((Ticket.ticket_status == 'ToDo'))
     return tickets  
 
@@ -88,3 +87,4 @@ def update_ticket(id, pid, **update_values):
         return redirect(url_for('project_show_update_delete', id=pid))
     else:
         raise Exception('No Ticket at id {}'.format(id))
+
