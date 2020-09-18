@@ -53,10 +53,17 @@ def get_all_tickets(id):
     # results = [ticket.ticket_as_dict() for ticket in all_tickets] 
     all_tickets =  Ticket.query.filter((Ticket.author_id == current_user.id) and (Ticket.project_id == id))
     tickets = [ticket.ticket_as_dict() for ticket in  all_tickets]
-    
-    # Todo_tickets = Ticket.query.filter((Ticket.ticket_status == 'ToDo'))
-
     return  tickets 
+    
+
+def get_ToDo_tickets(id):
+    all_tickets =  Ticket.query.filter( (Ticket.ticket_status == 'ToDo') )
+    tickets = [ticket.ticket_as_dict() for ticket in  all_tickets]
+    # (Ticket.author_id == current_user.id) and (Ticket.project_id == id) and
+    print('LINE 63 get_ToDo_tickets(id)!!!!!!!!!!!!!!!!!!!!!!' , tickets)
+    # Todo_tickets = Ticket.query.filter((Ticket.ticket_status == 'ToDo'))
+    return tickets  
+
 
 def delete_ticket(id, pid):
 
