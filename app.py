@@ -5,7 +5,7 @@ from flask_login import login_required, current_user, logout_user
 import os 
 from crud.user import get_users, create_user, post_user
 from crud.project import get_all_projects, get_project, create_project, update_project
-from crud.ticket import create_ticket, get_all_tickets, delete_ticket, get_ToDo_tickets
+from crud.ticket import create_ticket, get_all_tickets, delete_ticket, get_tickets_by_status
 from models import User, db, Project, Ticket 
 
 
@@ -62,8 +62,9 @@ def project_show_update_delete(id):
     if request.method == 'GET':
         project = get_project(id)
         tickets =  get_all_tickets(id)
-        toDo_tickets = get_ToDo_tickets(id)
-        return render_template('show_project.html', project=project, tickets=tickets, toDo_tickets=toDo_tickets) 
+        toDo_tickets = get_tickets_by_status('ToDo')
+        InProgress_tickets = get_tickets_by_status('InProgress')
+        return render_template('show_project.html', project=project, tickets=tickets, toDo_tickets=toDo_tickets, InProgress_tickets=InProgress_tickets) 
     if request.method == 'PUT':
 
         project = Project.query.get(id)

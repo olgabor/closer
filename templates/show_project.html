@@ -21,7 +21,7 @@
       <a class="nav-link" data-toggle="tab" href="#Todo">To Do </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2"> In Progress </a>
+      <a class="nav-link" data-toggle="tab" href="#InProgress"> In Progress </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#menu3"> Complete </a>
@@ -119,7 +119,56 @@
     </ul>
     </div>
 </div>
-    <div class="tab-pane container fade" id="menu2"> MENU 2 content </div>
+
+        <div class="tab-pane container fade" id="InProgress"> Todo Tickets
+            <div class="tab-pane container active" id="InProgress"> <br>
+            <ul class='list-group'>
+                {% for ticket in InProgress_tickets %}
+                  {% if ticket.project_id == project.id %}
+    
+                    <li style="list-style:none">  
+                        <div class="alert alert-primary" role="alert">
+                            {{ticket.name }} , 
+                            {{ticket.description }} , 
+                            <!-- {{ticket.date_posted }},  -->
+                            {{ticket.author_id }}, 
+                            project_id {{ticket.project_id }}, 
+                            {{ticket.image}}, 
+                            {{ticket.ticket_status}}, 
+                            {{ticket.ticket_priority}}, 
+                            {{ticket.due_date }}
+                <!-- <form action="{{ url_for('ticket_show_put_delete', id=ticket.id, pid=project.id) }}"  method=post>
+                                <input type=hidden value="{{ ticket.id}} , {{  project.id }}" /> -->
+                                    
+                <a href='/projects/{{project.id}}/tickets/{{ticket.id}}'>
+                <svg width="1.5em" height="1.5em"  viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </a>
+            <!-- </form>    -->
+                <div class="btn-group dropleft"> 
+                    <div class="btn-group dropleft">
+                        <svg  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg> 
+                        <div class="dropdown-menu"> 
+                        Update 
+                    </div>
+                </div>
+            </div>                      
+        </div> 
+    </li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+    </div>
+</div>
+
+
+
+
+    </div>
     <div class="tab-pane container fade" id="menu3"> MENU 2 content </div>
  
 </div>
