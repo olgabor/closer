@@ -76,4 +76,15 @@ def delete_ticket(id, pid):
     else:
         return Exception('No ticket at id {}'.format(id))
 
-    
+
+def update_ticket(id, pid, **update_values):
+
+    ticket = Ticket.query.get(id)
+    if ticket:
+        for key, value in update_values.items():
+            setattr(ticket, key, value)
+        
+        db.session.commit()
+        return redirect(url_for('project_show_update_delete', id=pid))
+    else:
+        raise Exception('No Ticket at id {}'.format(id))
