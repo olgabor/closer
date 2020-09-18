@@ -63,8 +63,14 @@ def project_show_update_delete(id):
         project = get_project(id)
         tickets =  get_all_tickets(id)
         toDo_tickets = get_tickets_by_status('ToDo')
-        InProgress_tickets = get_tickets_by_status('InProgress')
-        return render_template('show_project.html', project=project, tickets=tickets, toDo_tickets=toDo_tickets, InProgress_tickets=InProgress_tickets) 
+        inProgress_tickets = get_tickets_by_status('InProgress')
+        complete_tickets = get_tickets_by_status('Done')
+        return render_template('show_project.html', 
+                                project=project, 
+                                tickets=tickets, 
+                                toDo_tickets=toDo_tickets, 
+                                inProgress_tickets=inProgress_tickets,
+                                complete_tickets=complete_tickets ) 
     if request.method == 'PUT':
 
         project = Project.query.get(id)
