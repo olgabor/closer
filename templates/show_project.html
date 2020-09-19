@@ -44,9 +44,11 @@
                         </svg>
                         </div>
 
-                        <div class="d-flex align-items-start flex-column mr-auto p-2 bd-highlight" >
-                        <h6> {{ticket.name }} </h6>
-                        <h6 class='text-wrap'> {{ticket.description }} </h6>
+                        <div class="d-flex align-items-start flex-column mr-auto p-2 bd-highlight">
+                          <div class="d-flex  flex-row" > 
+                          <h6> {{ticket.name }} </h6></div> 
+                          <div> 
+                        <h6 class='text-justify' style="width: 40px">   {{ticket.description }} </h6></div>
                     </div>
 
                     <div class="p-2 bd-highlight">
@@ -61,15 +63,13 @@
                         <span class="badge badge-secondary ">Medium</span>
                                 {% endif %}
                             </div>
-                        <!-- {{ticket.ticket_status.name}}
-                        {{ticket.ticket_priority.name}} -->
-                       <div >
-                 
+                            <div>{{ticket.ticket_status.name}}</div>
+                       <div>
                            {{ticket.due_date.strftime('%m-%d-%Y')}}
                     </div> 
 
             <!-- Delete svg icon -->
-            <div class="p-2 bd-highlight">
+            <div class="p-2 bd-highlight ">
             <a href='/projects/{{project.id}}/tickets/{{ticket.id}}' >
             <svg width="1.5em" height="1.5em"  viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

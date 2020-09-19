@@ -18,6 +18,7 @@ login_manager.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/closer'
+app.config['DEBUG'] = True
 
 # SetS the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
