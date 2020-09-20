@@ -14,7 +14,6 @@ def create_user():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
-
     #check if user exists in database 
     user = User.query.filter_by(email=email).first()
     
