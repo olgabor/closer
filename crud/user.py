@@ -26,7 +26,7 @@ def create_user():
     #add user to database 
     db.session.add(new_user)
     db.session.commit()
-    return redirect(url_for('login'))
+    return redirect(url_for('all_projects'))
 
 
 def post_user():
