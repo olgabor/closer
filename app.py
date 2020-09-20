@@ -8,6 +8,7 @@ from crud.project import get_all_projects, get_project, create_project, update_p
 from crud.ticket import create_ticket, get_all_tickets, delete_ticket, get_tickets_by_status, update_ticket
 from models import User, db, Project, Ticket
 
+
 # user register page 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -63,12 +64,16 @@ def project_show_update_delete(id):
         toDo_tickets = get_tickets_by_status('ToDo')
         inProgress_tickets = get_tickets_by_status('InProgress')
         complete_tickets = get_tickets_by_status('Done')
+        print('line 67 tickets length', (len(tickets)))
+        print('line 68 tickets length', (len(complete_tickets)))
         return render_template('show_project.html', 
                                 project=project, 
                                 tickets=tickets, 
                                 toDo_tickets=toDo_tickets, 
                                 inProgress_tickets=inProgress_tickets,
-                                complete_tickets=complete_tickets ) 
+                                complete_tickets=complete_tickets, 
+                                number_tickets=len(tickets),
+                                number_complete_tickets=len(complete_tickets) ) 
     if request.method == 'PUT':
 
         project = Project.query.get(id)
