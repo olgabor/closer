@@ -52,7 +52,7 @@ def new_project():
 def all_projects():
     projects = get_all_projects()
     tickets =  get_all_tickets(id)
-    return render_template('projects.html', projects=projects, tickets=tickets) 
+    return render_template('projects1.html', projects=projects, tickets=tickets) 
 
 
 @app.route('/projects/<int:id>', methods=['GET', 'PUT'])

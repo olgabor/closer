@@ -2,16 +2,20 @@
 {% block body %}
 
 <div class="container-fluid">
-    <h1> Project Show Page</h1>
-<!-- <div class="row">
-    <div class="col-11" style="background-color:salmon;">
-        <h3> {{project.id, project.title, project.description, project.author_id }} </h3>
-    </div>
-  </div> -->
+    
+
 
 <div class="col-11" style="background-color:white;">
 <!-- Nav tabs -->
-<ul class="nav nav-tabs">
+<h1> Project Show Page</h1><br>
+<div class="row">
+  <div class="col-9" style="background-color:salmon;"> place the element to display project information
+      <h3> {{project.id, project.title, project.description, project.author_id }} </h3>
+  </div>
+</div>
+<br>
+
+<ul class="nav nav-tabs" >
     <li class="nav-item">
       <a class="nav-link active font-weight-bold" data-toggle="tab" href="#all_tickets">All Tasks </a>
     </li>
@@ -33,7 +37,7 @@
           {% for ticket in tickets %}
               {% if ticket.project_id == project.id %}
                 <li style="list-style:none">  
-                    <div class="alert alert-primary d-flex flex-direction-row justify-content-between align-items-center d-flex bd-highlight mb-6"  role="alert">
+                    <div class="alert alert-primary d-flex flex-direction-row justify-content-between align-items-center d-flex bd-highlight mb-6"  role="alert"  >
                        
                        <!-- Checkmark svg icon -->
                        <div class=" p-2 bd-highlight"> 
