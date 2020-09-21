@@ -38,7 +38,7 @@ def create_ticket():
     db.session.commit()
     t = new_ticket 
     # return redirect(url_for('all_projects'))
-    return redirect(url_for('all_projects'))
+    return redirect(url_for('project_show_update_delete', id=project_id))
 
 # def get_project(id):
 #     project = Project.query.get(id)
