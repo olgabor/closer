@@ -81,7 +81,6 @@ def project_show_update_delete(id):
         if project:
             project.title = request.form.get('title')
             project.description = request.form.get('description')
-
             db.session.commit()
 
     return redirect(url_for('all_projects'))
