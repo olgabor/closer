@@ -2,10 +2,9 @@
 
 {% block body %}
 
-  <div class="row justify-content-center">
-<div class="col-md-7 text-center"> 
+        <!--Create Ti cket Modal -->
 
-  <div class="row d-flex flex-row bd-highlight mb-2" style=" background-color:; margin: 10px">
+  <div class="row d-flex justify-content-center flex-row bd-highlight mb-2" style=" background-color:; margin: 10px">
 
   <div class='p-2 bd-highlight text-center' style='color: #dc3545;'> <h3> Add New Project  </h3>  </div> 
      <div class='p-2 bd-highlight'>  <svg data-toggle="modal"  data-target=# style='color:  #dc3545;' width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -13,25 +12,25 @@
                  </svg> 
              </div>
           </div>
-        </div> 
+      
 
+
+ <!-- <div class="col-md-12 text-center">  -->
+ <!-- row with image and cards  -->
+        <!-- <div class="row justify-content-md-center">  -->
         <div class="row justify-content-md-center"> 
-          <div class="col-md-6 "  > 
+          <div class="col-md-6 justify-content-md-center"  > 
             <img src="https://cdn.dribbble.com/users/1355613/screenshots/12237052/media/f46eabdf51de518a99d23f94977d7f7b.jpg" 
-            style='width: 25rem;  height:auto; margin:0%; border-radius: 2%; box-shadow: 1px 1px 1px #fde5e3; opacity: 0.9;' alt="">
-          </div>
+            style='width: 25rem; height:auto; margin:0%; border-radius: 2%; box-shadow: 1px 1px 1px #fde5e3; opacity: 0.9;' alt="">
+          </div> 
 
+        <div class="col-md-5 justify-content-md-center" > 
 
+       {% for project in projects %}
 
-
-
-        <div class="col-md-5" > 
-  {% for project in projects %}
-  
-  <div class="card"  style="width: 25rem; height: auto; background-color: #F9E79F; box-shadow: 0 0 0 2px white;
-   opacity: 0.8;" >
+  <div class="card" style="width: 25rem; height: auto; background-color: #F9E79F; box-shadow: 0 0 0 2px white; "  >
     <div class="card-body d-flex flex-direction-row justify-content-between align-items-center d-flex bd-highlight mb-6">
-      <div class=''> 
+      <div> 
         <div> 
          <p class="card-subtitle">   {{project.title}}</p>  
         </div>
@@ -39,15 +38,18 @@
         </div>
     </div>
 
-<div> <button type="button" class="btn btn-info" data-toggle="modal"  data-target=#{{project.title}} >Add item</button>
-</div>
-<div> <a href="/projects/{{project.id}}" class="btn btn-danger" >Manage</a> 
+
+    <div> <a href="/projects/{{project.id}}" class="btn btn-danger"> Manage</a> 
+    </div>
+
+    <div> <button class="btn btn-info" data-toggle="modal"  data-target=#{{project.id}} data-target=#{{project.id}} >Add item</button>
 </div>
 
+
         <!-- Create Ticket Modal -->
-        <div class="modal fade" id={{project.title }} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id={{project.id}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
           <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1'>
+            <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1; position: relative;'>
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle"> Add new item to your project <strong>  {{project.title }}</strong> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -94,10 +96,10 @@
               </div>
             </div>
           </div>
-        </div>
+         </div>
+        
 
-      
-     
+
     </div>
   </div> 
 <br>
@@ -107,9 +109,6 @@
 </div>
 </div>
 
-</div> 
 
-</div> 
-</div>
-</div> 
+
 {% endblock %}
