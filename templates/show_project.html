@@ -7,14 +7,16 @@
 <div class="row">
   <div class="col-12" style=" background-color: #F9E79F; box-shadow: 0 0 0 2px #F9E79F; border-radius: 2%;"> 
     <br>
-    <div class="card d-flex flex-direction-column justify-content-between" style="width: 100%; height: auto; ">
-      <div class="card-body" style='color: #dc3545; padding: 0%; margin-left:20px; margin-right:10px'>
-        <div> 
-        <h2 class="card-title align-middle"> {{project.title}} </h2>
-        <h4 class="card-subtitle align-middle"> {{project.description}} </h4> 
-
+    <div class="card d-flex bd-highlight  " style="width: 100%; height: auto; ">
+      <!-- <div class="card-body" style='color: #dc3545; padding: 0%; margin-left:20px; margin-right:10px'> -->
+      <div class="card-body  " style='color: #dc3545; padding: 0%; margin-left:20px; margin-right:10px'>
+        <div class='d-flex flex-column p-2 w-100 bd-highlight'> 
+        <h2 class="card-title "> {{project.title}} </h2>
+        <h4 class="card-subtitle "> {{project.description}} </h4> 
+      </div>
             <!-- Create New Ticket  -->
-        <div> <button class="btn btn-info" data-toggle="modal"  data-target=#{{project.id}} data-target=#{{project.id}} >Add item</button>
+        <div class='p-2 flex-shrink-1 bd-highlight'> 
+          <button class="btn btn-info" data-toggle="modal"  data-target=#{{project.id}} data-target=#{{project.id}} >Add item</button>
         </div>
         
         
@@ -23,7 +25,7 @@
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1; position: relative;'>
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle"> Add new item to your project <strong>  {{project.title }}</strong> </h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle"> Add new item to your project <strong> {{project.title }}</strong> </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -71,17 +73,9 @@
                  </div>
                 
 
-
-
-
-
-
-
-
-
-        <p class="text-right font-weight-light" style='opacity: .9' > 
-        progress {{ number_complete_tickets }}/{{ number_tickets }}</p> 
-      </div>
+        <!-- <p class="text-right font-weight-light" style='opacity: .9'> 
+        progress {{ number_complete_tickets }}/{{ number_tickets }}</p>  -->
+    
      </div>
 </div>
 <br>

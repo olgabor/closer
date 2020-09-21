@@ -7,8 +7,8 @@
     style='background-color: #F9E79F;  border-radius: 3%; font-family: PT Sans, sans-serif;'> 
 
       {% if current_user.is_authenticated %}
-     <div>  <a href="{{ url_for('home') }}"> 
-        <h4 class="my-0 mr-md-auto font-weight-normal" style='color: #dc3545;' >Closer</h4>
+     <div>  <a href="{{ url_for('home') }}" style='text-decoration: none;'> 
+        <h4 class="my-0 mr-md-auto font-weight-normal" style='color: #dc3545;'>Closer</h4>
       </a>  </div> 
       <div>
       <a style='color: #92bea3;' >Welcome, {{ current_user.name }}!</a> 
