@@ -17,6 +17,7 @@
       <!-- <a class="btn btn-outline-primary" href="{{ url_for('new_project') }}"> New Project </a> -->
       {% endif %}
       {% if not current_user.is_authenticated %}
+      <h4 class="my-0 mr-md-auto font-weight-normal" style='color: #dc3545;'>Closer</h4>
       <a class="btn btn-outline-danger" href="{{ url_for('all_projects') }}">Projects</a>
       <a class="btn btn-outline-danger" href="{{ url_for('register') }}">REGISTER</a>
       <a class="btn btn-outline-danger" href="{{ url_for('login') }}">Sign IN </a>
