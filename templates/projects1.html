@@ -1,9 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div> <br>
-ADD New project 
-<div class="col-md-7 text-center" > 
+
+  <div class="row">
+<div class="col-md-7 text-center"> 
+
+  <div class="row d-flex flex-row bd-highlight mb-2" style=" background-color:; margin: 10px">
+
+  <div class='p-2 bd-highlight text-center'> <h3> Add New Project  </h3>  </div> 
+     <div class='p-2 bd-highlight'>  <svg data-toggle="modal"  data-target=# style='color:  #dc3545;' width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                 </svg> 
+             </div>
+          </div>
+        </div> 
+
+
+
+        <div class="row">
+        <div class="col-md-5" > 
   {% for project in projects %}
   
   <div class="card"  style="width: 30rem; height: auto; background-color: rgb(238, 226, 225); box-shadow: 0 0 0 2px white;  position: relative;
@@ -82,12 +97,15 @@ ADD New project
 
 
 {% endfor %}
-<div class="col-md-4 text-center" style="width: 30rem; height: auto; background-color: rgb(238, 226, 225); border: 1px solid black "  > 
-  Add new project 
 </div>
 </div> 
-
-
-
+<div class="col-md-5 text-center" style="width: 30rem; height: auto; background-color: rgb(238, 226, 225); border: 1px solid black "  > 
+  Add new project 
 </div>
+
+</div> 
+
+</div> 
+</div>
+</div> 
 {% endblock %}
