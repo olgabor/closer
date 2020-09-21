@@ -6,18 +6,58 @@
 
   <div class="row d-flex justify-content-center flex-row bd-highlight mb-2" style=" background-color:; margin: 10px">
 
-  <div class='p-2 bd-highlight text-center' style='color: #dc3545;'> <h3> Add New Project  </h3>  </div> 
-     <div class='p-2 bd-highlight'>  <svg data-toggle="modal"  data-target=# style='color:  #dc3545;' width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <div class='p-2 bd-highlight text-center' type="button" style='color: #dc3545;'> <h3> Add New Project  </h3>  </div> 
+     <div class='p-2 bd-highlight'>  <svg data-toggle="modal"  data-target='#addNewProject' style='color:  #dc3545;' width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                 </svg> 
-             </div>
+        </svg> 
+   </div>
+
+  <!-- Add new Project Modal  -->
+  <div class="modal fade" id='addNewProject' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1; position: relative;'>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> Add new project </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- Form to add new project -->
+            <form method="POST" action="/projects/new">
+            <div class="field">
+              <div class="control">
+                <label for="exampleFormControlTextarea1">Title</label>
+                  <input class="form-control" type="text" name="title" placeholder="title" autofocus="">
+              </div>
           </div>
+
+          <div class="field">
+              <div class="control">
+                <label for="exampleFormControlTextarea1">Description</label>
+                  <input class="form-control" type="text" name="description" placeholder="description" autofocus="">
+              </div>
+          </div>
+
+          <div class="field">
+              <div class="control">
+                  <input class="form-control" type="hidden" name="author_id" value="{{current_user.id}}">
+              </div>
+          </div>
+          <br>
+          <button class="btn bg-danger text-white"> Create </button>
+          </form>
+        </div>
+      </div>
+    </div>
+   </div>
+</div>
       
 
 
- <!-- <div class="col-md-12 text-center">  -->
+ <div class="col-md-12 "> 
  <!-- row with image and cards  -->
-        <!-- <div class="row justify-content-md-center">  -->
+
         <div class="row justify-content-md-center"> 
           <div class="col-md-6 justify-content-md-center"  > 
             <img src="https://cdn.dribbble.com/users/1355613/screenshots/12237052/media/f46eabdf51de518a99d23f94977d7f7b.jpg" 
@@ -56,7 +96,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" style='opacity: 1;'>
+              <div class="modal-body">
                   <!-- Form to add new ticket -->
                   <form method="POST" action='/ticket/new'>
                       <div class="form-group">
@@ -108,7 +148,7 @@
 {% endfor %}
 </div>
 </div>
-
+</div>
 
 
 {% endblock %}
