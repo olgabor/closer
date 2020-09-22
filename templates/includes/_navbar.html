@@ -1,9 +1,4 @@
-<!-- <div class="d-flex flex-row  align-items-center "  -->
-
-
-    
-  
-    <nav class="navbar navbar-light  d-flex flex-row  align-items-center bd-highlight mb-3 " 
+  <nav class="navbar navbar-light  d-flex flex-row  align-items-center bd-highlight mb-3 " 
     style='background-color: #F9E79F;  border-radius: 3%; font-family: PT Sans, sans-serif;'> 
 
       {% if current_user.is_authenticated %}
@@ -14,14 +9,9 @@
       <a style='color: #92bea3;' >Welcome, {{ current_user.name }}!</a> 
       <a class="btn btn-outline-danger" href="{{ url_for('all_projects') }}">Projects</a>
       <a class="btn btn-outline-danger" href="{{ url_for('logout') }}">Logout</a>  </div>
-      <!-- <a class="btn btn-outline-primary" href="{{ url_for('new_project') }}"> New Project </a> -->
       {% endif %}
       {% if not current_user.is_authenticated %}
       <h4 class="my-0 mr-md-auto font-weight-normal" style='color: #dc3545;'>Closer</h4>
-      <a class="btn btn-outline-danger" href="{{ url_for('all_projects') }}">Projects</a>
       <a class="btn btn-outline-danger" href="{{ url_for('register') }}">REGISTER</a>
-      <a class="btn btn-outline-danger" href="{{ url_for('login') }}">Sign IN </a>
       {% endif %}
-    </nav>
-    <!-- <a class="btn btn-outline-primary" href="#">Sign up</a> -->
-  </div>
+</nav>
