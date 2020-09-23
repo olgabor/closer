@@ -20,6 +20,8 @@ Sign up for an account with Closer: <URL>
 - Apply status and priority labels to each individual ticket 
 - Control your project productivity with updating and deleting ticket statuses and due dates 
  
+### Entity Relationship Diagram 
+![ER_models_diagram](/images/ER_models_diagram.png?raw=true "ER_models_diagram") 
 
  Homepage 
 ![Homepage](/images/Closer_Homepage.png?raw=true "Homepage") 
