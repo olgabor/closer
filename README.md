@@ -25,7 +25,7 @@ Sign up for an account with Closer: <URL>
 ![Homepage](/images/Closer_Homepage.png?raw=true "Homepage") 
 
  Project Landing page
-![project_Landing_page](/images/Closer_project_landing_page.?raw=true "project_Landing_page")  
+![project_Landing_page](/images/Closer_project_landing_page.png?raw=true "project_Landing_page")  
 
  Create new project
 ![create_new_project](/images/Closer_add_new_project.png?raw=true "create_new_project") 
@@ -34,8 +34,6 @@ Sign up for an account with Closer: <URL>
 ![Closer_project_dashboard](/images/Closer_project_dashboard.png?raw=true "Closer_project_dashboard") 
 
  Create new ticket 
-![](/images/Closer_add_new_ticket.png?raw=true "") 
-
 
 ![Closer_add_new_ticket](/images/Closer_add_new_ticket.png?raw=true "Closer_add_new_ticket") 
 
