@@ -43,4 +43,4 @@ Sign up for an account with Closer: <URL>
 ## Planned Features
 
 1. Utilize Google calendar API to add events to user calendar 
-
+2. Add flash messages when new user, project, ticket were created 
