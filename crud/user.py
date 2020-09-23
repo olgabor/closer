@@ -14,16 +14,14 @@ def create_user():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
-    #check if user exists in database 
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first() #check if user exists in database 
     
     if user:
         flash('Email address already exists')
         return redirect(url_for('home'))
 
-    #create new user 
+    #create new user, save to db 
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
-    #add user to database 
     db.session.add(new_user)
     db.session.commit()
     return redirect(url_for('all_projects'))

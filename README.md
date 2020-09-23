@@ -44,3 +44,5 @@ Sign up for an account with Closer: <URL>
 
 1. Utilize Google calendar API to add events to user calendar 
 2. Add flash messages when new user, project, ticket were created 
+3. Link the 'register modal' in global nav 
+4. Fix current date not saving as dafault 

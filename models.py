@@ -6,21 +6,18 @@ from enum import Enum
 from sqlalchemy import Integer, Enum
 from flask_login import UserMixin, LoginManager, AnonymousUserMixin
 
-
 app = Flask(__name__)
-# login = LoginManager(app)
 
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
-# login_manager.anonymous_user = MyAnonymousUser
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/closer'
 app.config['DEBUG'] = True
 
-# SetS the secret key to random bytes
+# Sets the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 db = SQLAlchemy(app)
 
@@ -32,18 +29,11 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(100)) 
     password = db.Column(db.String(100))
-    project = db.relationship("Project", backref="users", cascade="all, delete")
+    project = db.relationship("Project", backref="users", cascade="all, delete") #sets realtionship to Project table 
 
     def __repr__(self):
             return f'User(id={self.id}, email="{self.email}", name="{self.name}")'
-    
-    # def user_as_dict(self):
-    #     return [{
-    #         id: self.id,
-    #         email: self.email,
-    #         name: self.name
-    #         }]
-
+ 
     def user_as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
     
@@ -54,9 +44,7 @@ class Project(db.Model):
     title = db.Column(db.String(150))
     description = db.Column(db.String(250)) 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='SET NULL')) #if user gets deleted this field gets deleted 
-    
-    #realtionship to Ticket 
-    ticket = db.relationship("Ticket", backref="project", cascade="all, delete")
+    ticket = db.relationship("Ticket", backref="project", cascade="all, delete") #sets realtionship to Ticket table 
 
 
     def __repr__(self):
@@ -64,6 +52,7 @@ class Project(db.Model):
 
     def project_as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
     
 class Ticket_Priority(enum.Enum):
     Higher = 1
@@ -75,20 +64,6 @@ class Ticket_Status(enum.Enum):
     ToDo = 1
     InProgress = 2
     Done = 3
-    
-
-# class Ticket_Priority(enum.Enum):
-#     Higher = "Higher"
-#     High = "High"
-#     Medium = "Medium"
-#     Low = "Low"
-
-# class Ticket_Status(enum.Enum):
-#     ToDo = "ToDo"
-#     InProgress = "InProgress"
-#     Done = "Done"
-#     Completed = "Completed"
-#     Canceled = "Canceled"
 
 class Ticket(db.Model): 
     __tablename__ = 'ticket'
