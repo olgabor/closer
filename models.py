@@ -5,7 +5,7 @@ import enum
 from enum import Enum
 from sqlalchemy import Integer, Enum
 from flask_login import UserMixin, LoginManager, AnonymousUserMixin
-import psycopg2
+import psycopg2, os 
 
 
 app = Flask(__name__)
