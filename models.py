@@ -6,6 +6,8 @@ from enum import Enum
 from sqlalchemy import Integer, Enum
 from flask_login import UserMixin, LoginManager, AnonymousUserMixin
 import psycopg2, os 
+from sqlalchemy import create_engine
+
 
 
 app = Flask(__name__)
@@ -24,6 +26,7 @@ DATABASE_URL = 'postgresql:///closer'
 
 # DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+engine = create_engine('postgresql:///closer'')
 
 # Sets the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
