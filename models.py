@@ -20,8 +20,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///closer'
 app.config['DEBUG'] = True
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
+DATABASE_URL = 'postgresql:///closer' 
+
 # DATABASE_URL = os.environ['DATABASE_URL']
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Sets the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
