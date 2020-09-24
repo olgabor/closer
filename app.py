@@ -34,7 +34,7 @@ def logout():
     return redirect(url_for('home'))
 
 #Homepage route 
-@app.route('/home')
+@app.route('/')
 def home():
     users = get_users()
     if current_user.is_authenticated: 
