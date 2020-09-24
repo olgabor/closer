@@ -18,13 +18,22 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///closer'
 app.config['DEBUG'] = True
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
-DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# DATABASE_URL = os.environ['DATABASE_URL']
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Sets the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 db = SQLAlchemy(app)
+
+def connect_db(app):
+    # Connect to database
+    db.app = app
+    db.init_app(app)
+
+connect_db(app)
+db.create_all()
 
 #Users model 
 class User(UserMixin, db.Model): 
