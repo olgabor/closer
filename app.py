@@ -9,6 +9,17 @@ from crud.ticket import create_ticket, get_all_tickets, delete_ticket, get_ticke
 from models import User, db, Project, Ticket
 
 
+#Homepage route 
+@app.route('/', methods=['GET','POST'])
+def home():
+     return render_template('home.html')
+    # users = get_users()
+    # if current_user.is_authenticated: 
+    #     return render_template('home.html', users=users, name=current_user.name) 
+    # else: 
+    #     return render_template('home.html')
+
+
 # user register page 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -33,14 +44,6 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-#Homepage route 
-@app.route('/')
-def home():
-    users = get_users()
-    if current_user.is_authenticated: 
-        return render_template('home.html', users=users, name=current_user.name) 
-    else: 
-        return render_template('home.html')
         
 #renders 'projects' page and manages creating new project         
 @app.route('/projects/new', methods=['GET', 'POST'])
