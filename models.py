@@ -8,8 +8,6 @@ from flask_login import UserMixin, LoginManager, AnonymousUserMixin
 import psycopg2, os 
 from sqlalchemy import create_engine
 
-
-
 app = Flask(__name__)
 
 login_manager = LoginManager()
@@ -19,26 +17,27 @@ login_manager.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///closer'
-app.config['DEBUG'] = True
-app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+db = SQLAlchemy(app)
+# app.config['DEBUG'] = True
+# app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
-DATABASE_URL = 'postgresql:///closer' 
+# DATABASE_URL = 'postgresql:///closer' 
 
 # DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-engine = create_engine('postgresql:///closer')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# engine = create_engine('postgresql:///closer')
 
 # Sets the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-db = SQLAlchemy(app)
 
-def connect_db(app):
-    # Connect to database
-    db.app = app
-    db.init_app(app)
 
-connect_db(app)
-db.create_all()
+# def connect_db(app):
+#     # Connect to database
+#     db.app = app
+#     db.init_app(app)
+
+# connect_db(app)
+# db.create_all()
 
 #Users model 
 class User(UserMixin, db.Model): 
