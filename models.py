@@ -27,6 +27,12 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
+conn=psycopg2.connect(
+  database="closer",
+  user="postgres",
+  host="/tmp/",
+  password="123"
+)
 
 # Sets the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
