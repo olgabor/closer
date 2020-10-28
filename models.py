@@ -17,14 +17,16 @@ login_manager.init_app(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///closer'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///closer'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+
 db = SQLAlchemy(app)
 # app.config['DEBUG'] = True
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 
-os.environ['DATABASE_URL'] = 'postgres://jghziswjhhbsqc:bba0b2509ef51b1cc3d1939c3268ede973de62a63101d201545bb915094ce6a8@ec2-3-214-46-194.compute-1.amazonaws.com:5432/d5hhgj0jgibm7k'
-DATABASE_URL = os.environ['DATABASE_URL']
+# os.environ['DATABASE_URL'] = 'postgres://jghziswjhhbsqc:bba0b2509ef51b1cc3d1939c3268ede973de62a63101d201545bb915094ce6a8@ec2-3-214-46-194.compute-1.amazonaws.com:5432/d5hhgj0jgibm7k'
+# DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
