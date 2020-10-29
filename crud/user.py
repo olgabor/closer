@@ -3,7 +3,6 @@ from flask import Flask, request, jsonify, render_template, url_for, session, re
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user
 
-
 # return all users from database
 def get_users():
     all_users = User.query.all()
@@ -24,8 +23,8 @@ def create_user():
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
     db.session.add(new_user)
     db.session.commit()
-    return redirect(url_for('all_projects'))
 
+    return post_user() #keep the user logges in after registered 
 
 def post_user():
     email = request.form.get('email')
@@ -34,7 +33,7 @@ def post_user():
 
     user = User.query.filter_by(email=email).first()
 
-    # check if the user actually exists
+    # check if the user exists in db
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
