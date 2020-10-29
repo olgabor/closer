@@ -29,11 +29,11 @@ def register():
     if request.method == 'POST': 
         return create_user()
 
-#log in user 
+#login user 
 @app.route('/login', methods=['GET','POST'] )
 def login():
-    if request.method == 'GET': 
-        return render_template('login.html')
+    # if request.method == 'GET': 
+    #     return post_user()
     if request.method == 'POST': 
         return post_user()
 
@@ -91,7 +91,6 @@ def project_show_update_delete(id):
     #   return update_project(id=project.id, title=request.form.get('title'), description=request.form.get('description'))
 
 
-
 #craetes a new ticket 
 @app.route('/ticket/new', methods=['GET', 'POST'])
 def new_ticket():
@@ -113,7 +112,6 @@ def ticket_show_put_delete(id, pid):
     else: 
         
         return "SHOW, EDIT, DELETE TICKET"
-
 
 
 @app.errorhandler(Exception)
