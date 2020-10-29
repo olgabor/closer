@@ -12,14 +12,17 @@ def create_user():
     
     if user:
         flash('Email address already exists')
+        # session.pop('_flashes', None)
         return redirect(url_for('home'))
 
     #create new user, save to db 
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
     db.session.add(new_user)
-    db.session.commit()
+    db.session.commit() 
 
-    return post_user() #keep the user logges in after registered 
+    login_user(new_user) #keep the user logged in after registered
+
+    return redirect(url_for('all_projects'))  
 
 def post_user():
     email = request.form.get('email')
@@ -31,8 +34,10 @@ def post_user():
     # check if the user exists in db
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
     if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.')
-        return redirect(url_for('register')) # if the user doesn't exist or password is wrong, reload the page
+
+        flash('Please check your login credentials and try again.')
+    
+        return redirect(url_for('home')) # if the user doesn't exist or password is wrong, redirect back to home page 
 
     login_user(user, remember=remember)
 

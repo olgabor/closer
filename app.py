@@ -23,17 +23,15 @@ def home():
 # user register page 
 @app.route('/register', methods=['GET','POST'])
 def register():
-    if request.method == 'GET': 
-        return create_user()
-    #  return render_template('register.html')
+    # if request.method == 'GET': 
+    #     return create_user()
+    # #  return render_template('register.html')
     if request.method == 'POST': 
         return create_user()
 
 #login user 
 @app.route('/login', methods=['GET','POST'] )
 def login():
-    # if request.method == 'GET': 
-    #     return post_user()
     if request.method == 'POST': 
         return post_user()
 
