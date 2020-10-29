@@ -3,11 +3,6 @@ from flask import Flask, request, jsonify, render_template, url_for, session, re
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user
 
-# return all users from database
-def get_users():
-    all_users = User.query.all()
-    results = [user.user_as_dict() for user in all_users] 
-    return jsonify(results)
 
 def create_user(): 
     email = request.form.get('email')
