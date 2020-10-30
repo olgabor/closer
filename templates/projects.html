@@ -1,175 +1,132 @@
 {% extends 'layout.html' %}
-
 {% block body %}
-  <h1> show all projects on this page </h1>
-    <h3>Hi, {{ current_user.name }}!</h3>
-    {{all_projects}}
-
-<!-- 
-<ul class='list-group'>
-{% for project in projects %}
-    <li class='list-group-item'> <a href='project/{{project.id}}'>  {{project.title }} , {{project.description }} </a></li>
-{% endfor %}
-</ul>
- -->
-
-    
-<div id="accordion">
-    {% for project in projects %}
-   
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#{{project.id}}" aria-expanded="true" aria-controls="{{project.id }}">
-           <h4> {{project.title }} <a href='/projects/{{project.id}}'></a></h4> 
-            {{project}}
+  <div class="row" style=" margin: 10px;">
+    <div class='col d-flex flex-row '> 
+  <div class='p-2 bd-highlight text-center' type="button" style='color: #dc3545;'> <h3> Add New Project  </h3>  
+  </div> 
+     <div class='p-2 bd-highlight'>  <svg data-toggle="modal"  data-target='#addNewProject' style='color:  #dc3545;' width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+        </svg> 
+   </div>
+  
+  <!-- Add new Project Modal  -->
+  <div class="modal fade" id='addNewProject' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1; position: relative;'>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> Add new project </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
-        </h5>
-      </div>
-      
-      <div id="{{project.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-            {{project.description }}
-            
-            Add new item 
-            <svg style='color: grey;' width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-            </svg>
-
-            <button type="button" data-toggle="modal" class="btn btn-info"  data-target=#{{project.title}}  href="#" >add new ticket </button> 
-
-                 <div class="btn-group dropright">
-                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Actions 
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#updateProject" href="#">Update</a>
-                    <a class="dropdown-item" href="#">Complete</a>
-                    <a class="dropdown-item" href="#">Delete</a>
-                </div>
+        </div>
+        <div class="modal-body">
+            <!-- Form to add new project -->
+            <form method="POST" action="/projects/new">
+            <div class="field">
+              <div class="control">
+                <label for="exampleFormControlTextarea1">Title</label>
+                  <input class="form-control" type="text" name="title" placeholder="title" autofocus="">
               </div>
-
-               <!-- Update Project Modal -->
-               <div class="modal fade" id="updateProject" tabindex="-1" aria-labelledby="updateProject" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="">Update Project {{project.title}} </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <!-- <form method="PUT" action='/project/{{project.id}}'> -->
-                      <form method="PUT" action='/projects/{{project.id}}'>
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label"> Title: </label>
-                          <input type="text" class="form-control" name="title" id="recipient-name" placeholder={{project.title}}>
-                        </div>
-                        <div class="form-group">
-                          <label for="message-text" class="col-form-label">Description:</label>
-                          <textarea class="form-control" name="description" id="message-text" placeholder={{project.description}} ></textarea>
-                        </div>
-                        <button class="btn btn-info">Save</button>
-                      </form>
-                    </div>
-                    <!-- <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal"> Save Changes </button>
-                    </div> -->
-                  </div>
-                </div>
+          </div>
+          <div class="field">
+              <div class="control">
+                <label for="exampleFormControlTextarea1">Description</label>
+                  <input class="form-control" type="text" name="description" placeholder="description" autofocus="">
               </div>
-         
-
-
-           <div class='d-flex flex-row  w-50 p-3 justify-content-md-between'  >
-            <ul class="list-group ">
-                <li class="list-group-item d-inline-flex p-2 justify-content-between align-items-center">
-                    ToDo
-                  <span class="badge badge-primary badge-pill">14</span>
-                </li>
-                <li class="list-group-item d-inline-flex p-2 justify-content-between align-items-center">
-                    InProgress
-                  <span class="badge badge-primary badge-pill">2</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                Done
-                  <span class="badge badge-primary badge-pill">1</span>
-                </li>
-              </ul>
-           </div>
-
-                     <!-- Create Ticket Modal -->
-                     <div class="modal fade" id={{project.title }} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle"> Add new item to your project <strong>  {{project.title }} {{project.id }} </strong> </h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Form to add new ticket -->
-                                <form method="POST" action='/ticket/new'>
-                                    <div class="form-group">
-                                      <label for="exampleFormControlInput1">Name</label>
-                                      <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Description</label>
-                                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                      </div>
-                                    <div class="form-group">
-                                      <label for="">Priority</label>
-                                      <select name="ticket_priority" class="form-control" id="exampleFormControlSelect1">
-                                        <option>Higher</option> 
-                                        <option>High</option>
-                                        <option>Medium</option>
-                                        <option>Low</option>
-                                      </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for=""> Set Status</label>
-                                        <select name="ticket_status" class="form-control" id="exampleFormControlSelect1">
-                                          <option>ToDo</option>
-                                          <option>InProgress</option>
-                                          <option>Done</option>
-                                        </select>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleFormControlInput1">Due Date</label>
-                                        <input name="due_date" type="date" class="form-control" id="date">
-                                        <input class="input" type="hidden" name="author_id" value="{{current_user.id}}">
-                                        <input class="input" type="hidden" name="project_id" value={{ project.id }}>
-                                        <input class="input" type="hidden" name="date_posted">
-                                      </div>
-                                    <button class="btn btn-info">Save</button>
-                                  </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                <!-- <div>
-                    <ul>
-                        {% for ticket in tickets %}
-                         {% if ticket.project_id ==  project.id  %}
-                            <li> {{ ticket.name }} {{ ticket.author_id }} {{ ticket.project_id }} {{project.id}} </li>
-                            {% endif %}
-                    </ul>
-                    {% endfor %}
-                </div>
-    -->
+          </div>
+          <div class="field">
+              <div class="control">
+                  <input class="form-control" type="hidden" name="author_id" value="{{current_user.id}}">
+              </div>
+          </div>
+          <br>
+          <button class="btn bg-danger text-white"> Create </button>
+          </form>
         </div>
       </div>
     </div>
-
-
-    {% endfor %}
+   </div>
   </div>
+</div>
+      
+ <div class="row"> 
+    <div class="col justify-content-md-center">
+       <img src="https://cdn.dribbble.com/users/1355613/screenshots/12237052/media/f46eabdf51de518a99d23f94977d7f7b.jpg" 
+            style='width: 30rem; height:auto; margin:0%; border-radius: 2%; box-shadow: 1px 1px 1px #fde5e3; opacity: 0.9;' alt="">
+          </div> 
+        
+    <div class="col justify-content-md-center" > 
+       {% for project in projects %}
+  <div class="card" style="width: 30rem; height: auto; background-color: #F9E79F; box-shadow: 0 0 0 2px white;"  >
+    <div class="card-body d-flex flex-direction-row justify-content-between align-items-center d-flex bd-highlight mb-6">
+      <div> 
+        <div> 
+         <p class="card-subtitle">   
+           {{project.title}}</p>  
+        </div>
+        <div> <p style="width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="card-subtitle">   {{project.description}} </p> 
+        </div>
+    </div>
 
+    <div> <a href="/projects/{{project.id}}" class="btn btn-danger"> Manage</a> 
+    </div>
+    <div> <button class="btn btn-info" data-toggle="modal"  data-target=#{{project.id}} data-target=#{{project.id}} >Add item</button>
+</div>
+        <!-- Create Ticket Modal -->
+        <div class="modal fade" id={{project.id}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1; position: relative;'>
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> Add new item to your project <strong>  {{project.title }}</strong> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <!-- Form to add new ticket -->
+                  <form method="POST" action='/ticket/new'>
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Description</label>
+                          <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                      <div class="form-group">
+                        <label for="">Priority</label>
+                        <select name="ticket_priority" class="form-control" id="exampleFormControlSelect1">
+                          <option>Higher</option> 
+                          <option>High</option>
+                          <option>Medium</option>
+                          <option>Low</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                          <label for=""> Set Status</label>
+                          <select name="ticket_status" class="form-control" id="exampleFormControlSelect1">
+                            <option>ToDo</option>
+                            <option>InProgress</option>
+                            <option>Done</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Due Date</label>
+                          <input name="due_date" type="date" class="form-control" id="date">
+                          <input class="input" type="hidden" name="author_id" value="{{current_user.id}}">
+                          <input class="input" type="hidden" name="project_id" value={{ project.id }}>
+                          <input class="input" type="hidden" name="date_posted">
+                        </div>
+                      <button class="btn btn-info">Save</button>
+                    </form>
+              </div>
+            </div>
+          </div>
+         </div>
+    </div>
+  </div> 
+<br>
+{% endfor %}
+  </div>
+</div>
 {% endblock %}
-

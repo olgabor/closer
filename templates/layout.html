@@ -15,11 +15,12 @@
     <div class="container" style='background-color: beige;  border-radius: 3%; font-family: PT Sans, sans-serif'>
 
    <!-- Flash messages -->
+   <div> 
       {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
     {% for message in messages %}
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info " role="alert">
       <strong>  {{ message }}  </strong>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -28,7 +29,7 @@
     </ul>
   {% endif %}
 {% endwith %}
-
+</div>
     {% block body %}{% endblock %}
     </div>
    <!-- Optional JavaScript -->
