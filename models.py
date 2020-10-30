@@ -32,7 +32,6 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # Sets the secret key to random bytes
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-
 #Users model 
 class User(UserMixin, db.Model): 
     __tablename__ = 'users'
