@@ -2,7 +2,7 @@
 ## Closer
 
 ### Introduction
-Manage your projects and tasks with Closer productivity app. 
+Manage your projects and tasks with a Closer productivity app. 
 
 Sign up for an account with Closer: <URL>
 
@@ -45,4 +45,4 @@ Sign up for an account with Closer: <URL>
 1. Utilize Google calendar API to add events to user calendar 
 2. Add flash messages when new user, project, ticket were created 
 3. Link the 'register modal' in global nav 
-4. Fix current date not saving as dafault 
+4. Fix current date not saving as default 
