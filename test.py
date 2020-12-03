@@ -1,7 +1,7 @@
 import unittest 
 from app import app, db 
 from models import User, Project, Ticket, Ticket_Priority 
-from datetime import datetime
+
 
 class TestApp(unittest.TestCase):
     
@@ -26,7 +26,9 @@ class TestApp(unittest.TestCase):
  
     #user saves to database 
     def test_user(self):
-        user = User(email='unittest@sample.com', name='unittestUser', password='password')
+        user = User(email='unittest@sample.com', 
+                    name='unittestUser',
+                    password='password')
         db.session.add(user)
         db.session.commit()
         test = User.query.filter_by(email='unittest@sample.com').first() 
@@ -36,7 +38,8 @@ class TestApp(unittest.TestCase):
 
     #project saves to database 
     def test_project(self):
-        project = Project(title='Test_project', description='unittest !@#$%^&*()1234')
+        project = Project(title='Test_project',
+                          description='unittest !@#$%^&*()1234')
         db.session.add(project)
         db.session.commit()
         test = Project.query.filter_by(title='Test_project').first() 
@@ -49,8 +52,7 @@ class TestApp(unittest.TestCase):
         ticket = Ticket(name = 'Test_ticket', 
                         description = 'unittest ticket !@#$%^&*()1234',
                         ticket_priority = 'Medium', 
-                        ticket_status = 'ToDo'
-                        )
+                        ticket_status = 'ToDo')
         db.session.add(ticket)
         db.session.commit()
         test = Ticket.query.filter_by(name='Test_ticket').first() 
@@ -58,7 +60,25 @@ class TestApp(unittest.TestCase):
         assert ticket.name == 'Test_ticket'
         assert ticket.description == 'unittest ticket !@#$%^&*()1234'
         
+    #user registered and keeps loggen in 
+    def test_user_registration_logout_login(self):
+        test = app.test_client(self)
+        #register new user 
+        response = test.post('/register', data=dict(email='unittest@sample.com', 
+                    name='unittestUser',
+                    password='password'), follow_redirects=True)
+
+        self.assertIn(b'Welcome, unittestUser', response.data) 
+
+        #user logs out 
+        response = test.get('/logout')
+        self.assertEqual(response.location, 'http://localhost/') #user is redirected to '/' 
   
+        #user logs in  
+        response = test.post('/login', data=dict(email='unittest@sample.com',
+                                      password='password'))
+        self.assertEqual(response.location, 'http://localhost/projects') #user is redirected to 'projects'
+
 
 if __name__ == "__main__":
     unittest.main()

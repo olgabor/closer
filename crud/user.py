@@ -20,7 +20,7 @@ def create_user():
     db.session.add(new_user)
     db.session.commit() 
 
-    login_user(new_user) #keep the user logged in after registered
+    login_user(new_user) #keep the user logged in after registration
 
     return redirect(url_for('all_projects'))  
 
