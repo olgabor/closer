@@ -12,6 +12,47 @@
       {% endif %}
       {% if not current_user.is_authenticated %}
       <h4 class="my-0 mr-md-auto font-weight-normal" style='color: #dc3545;'>Closer</h4>
-      <a class="btn btn-outline-danger" href="{{ url_for('register') }}">REGISTER</a>
+      <a class="btn btn-outline-danger" href="{{ url_for('register') }}" data-toggle="modal"  data-dismiss="modal" data-target="#register">REGISTER</a>
+
+
+       <!-- Register Modal -->
+       <div class="modal fade" id='register' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1'>
+            <div class="modal-body">
+
+              <div class="column is-4 is-offset-4">
+                <h3 class="font-weight-bold text-center " style='color: #dc3545;'> Register</h3>
+                <div class="box">
+                    <form  method="POST" action='/register'>
+                        <div class="field">
+                            <div class="control">
+                              <br>
+                                <input class="form-control" type="email" name="email" placeholder="Email" autofocus="">
+                            </div>
+                        </div>
+            
+                        <div class="field">
+                            <div class="control">  
+                              <br>
+                                <input class="form-control" type="text" name="name" placeholder="Name" autofocus="">
+                            </div>
+                        </div>
+            
+                        <div class="field">
+                            <div class="control">
+                             <br>
+                                <input class="form-control" type="password" name="password" placeholder="Password">
+                            </div>
+                            <br>
+                        </div>
+                        <button class="btn bg-danger text-white"> Sign Up</button>
+                    </form>
+                </div>
+            </div>
+          </div>
+      </div>
+   </div>
+</div>
       {% endif %}
 </nav>
