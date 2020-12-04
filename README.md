@@ -4,7 +4,7 @@
 ### Introduction
 Manage your projects and tasks with a Closer productivity app. 
 
-Sign up for an account with Closer: <URL>
+Sign up for an account with Closer: <https://closer-sei.herokuapp.com/>
 
 #### Built with    
 * Flask 
@@ -19,6 +19,7 @@ Sign up for an account with Closer: <URL>
 - Have the individual tickets to your project 
 - Apply status and priority labels to each individual ticket 
 - Control your project productivity with updating and deleting ticket statuses and due dates 
+
  
 ### Entity Relationship Diagram 
 ![ER_models_diagram](/images/ER_models_diagram.png?raw=true "ER_models_diagram") 
@@ -39,10 +40,13 @@ Sign up for an account with Closer: <URL>
 
 ![Closer_add_new_ticket](/images/Closer_add_new_ticket.png?raw=true "Closer_add_new_ticket") 
 
+## Running Unit Tests 
+```
+python -m unittest
+```
 
 ## Planned Features
 
 1. Utilize Google calendar API to add events to user calendar 
 2. Add flash messages when new user, project, ticket were created 
-3. Link the 'register modal' in global nav 
-4. Fix current date not saving as default 
+3. Fix current date not saving as default
