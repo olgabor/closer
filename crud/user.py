@@ -1,5 +1,5 @@
 from models import app, db, User 
-from flask import Flask, request, jsonify, render_template, url_for, session, redirect, flash 
+from flask import Flask, request, render_template, url_for, session, redirect, flash 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user
 

@@ -74,7 +74,7 @@ def project_show_update_delete(id):
 
     return redirect(url_for('all_projects'))
 
-#craetes a new ticket 
+#creates new ticket 
 @app.route('/ticket/new', methods=['GET', 'POST'])
 def new_ticket():
     if request.method == 'GET':
@@ -82,8 +82,7 @@ def new_ticket():
     if request.method == 'POST':
         return create_ticket()
 
-
-#ticket GET, PUT, and DELETE routes 
+#ticket GET, PUT and DELETE routes 
 @app.route('/projects/<int:pid>/tickets/<int:id>', methods=['GET', 'PUT', 'POST'])
 def ticket_show_put_delete(id, pid):
     print('Line 92', request.method, id , pid)
