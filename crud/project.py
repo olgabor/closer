@@ -2,6 +2,7 @@ from models import db, app, Project
 from flask import Flask, request, render_template, url_for, session, redirect, flash 
 from flask_login import current_user
 
+
 def get_project(id):
     """ Function takes the id parameter 
         queries project by id in database 
@@ -10,9 +11,10 @@ def get_project(id):
     """ 
     project = Project.query.get(id)
     if project:
-      return project
+        return project
     else:
         raise Exception('Error getting project at {}'.format(id))
+
 
 def create_project(): 
     """ Function creates new project 
@@ -26,15 +28,15 @@ def create_project():
     description = request.form.get('description')
     author_id = request.form.get('author_id')
 
-    project = Project.query.filter_by(title=title).first()
-    
+    project = Project.query.filter_by(title = title).first()
     if project:
         flash('Project address already exists')
 
-    new_project = Project(title=title, description=description, author_id=author_id)
+    new_project = Project(title = title, description=description, author_id = author_id)
     db.session.add(new_project)
     db.session.commit()
     return redirect(url_for('all_projects'))
+
 
 def get_all_projects():
     """ Function queries all projects by user_id 
@@ -44,18 +46,18 @@ def get_all_projects():
     results = [project.project_as_dict() for project in all_projects] 
     return all_projects
 
+
 def update_project(id, title, description):
     """ Function updates the existing project
         checks if project exists in database
         updates title and description and saves to database 
         raises exception if projects doesn't exists 
     """
-    project = Project.query.get(id=id)
+    project = Project.query.get(id = id)
 
     if project:
         project.title = title
         project.description = description
-        
         db.session.commit()
         return redirect(url_for('all_projects'))
 
