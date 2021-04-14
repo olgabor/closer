@@ -1,9 +1,7 @@
-
 ## Closer
 
 ### Introduction
 Manage your projects and tasks with a Closer productivity app. 
-
 Sign up for an account with Closer: <https://closer-sei.herokuapp.com/>
 
 #### Built with    
@@ -16,17 +14,18 @@ Sign up for an account with Closer: <https://closer-sei.herokuapp.com/>
 
 ### Features 
 - Create your own account
-- Create non limited amount of projects 
+- Create non-limited amount of projects 
 - Have the individual tickets to your project 
 - Apply status and priority labels to each individual ticket 
-- Control your project productivity with updating and deleting ticket statuses and due dates 
+- Control your project productivity by updating and deleting ticket statuses and due dates 
 
 ## Run  
 ```
 $ export FLASK_APP=js_example
-$ flask ru 
-Open http://127.0.0.1:5000 in a browser. 
+$ flask run
 ```
+Open http://127.0.0.1:5000 in a browser. 
+
 ## Install 
 ```
 $ python3 -m venv venv
@@ -58,6 +57,6 @@ python -m unittest
 
 ## Planned Features
 
-1. Utilize Google calendar API to add events to user calendar 
-2. Add flash messages when new user, project, ticket were created 
-3. Fix current date not saving as default
+1. Utilize Google Calendar API to add events to user calendar 
+2. Add flash messages when new user, project, ticket were created
+3. Fix current date not saving as default value
