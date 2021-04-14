@@ -13,11 +13,13 @@ from models import User, db, Project, Ticket
 def home():
      return render_template('home.html')
 
+
 #user register page 
 @app.route('/register', methods=['GET','POST'])
 def register():
     if request.method == 'POST': 
         return create_user()
+
 
 #login user 
 @app.route('/login', methods=['GET','POST'] )
@@ -25,12 +27,14 @@ def login():
     if request.method == 'POST': 
         return post_user()
 
+
 #logout user 
 @app.route('/logout')
 @login_required
 def logout(): 
     logout_user()
     return redirect(url_for('home'))
+
 
 #renders 'projects' page and manages creating new project         
 @app.route('/projects/new', methods=['GET', 'POST'])
@@ -40,11 +44,13 @@ def new_project():
     if request.method == 'POST':
         return create_project()
 
+
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
     projects = get_all_projects()
     tickets =  get_all_tickets(id)
     return render_template('projects.html', projects=projects, tickets=tickets) 
+
 
 @app.route('/projects/<int:id>', methods=['GET', 'PUT'])
 def project_show_update_delete(id):
@@ -74,6 +80,7 @@ def project_show_update_delete(id):
 
     return redirect(url_for('all_projects'))
 
+
 #creates new ticket 
 @app.route('/ticket/new', methods=['GET', 'POST'])
 def new_ticket():
@@ -81,6 +88,7 @@ def new_ticket():
         return render_template('new_ticket.html')
     if request.method == 'POST':
         return create_ticket()
+
 
 #ticket GET, PUT and DELETE routes 
 @app.route('/projects/<int:pid>/tickets/<int:id>', methods=['GET', 'PUT', 'POST'])
@@ -92,6 +100,7 @@ def ticket_show_put_delete(id, pid):
         return update_ticket(id, pid, **request.form)
     else:
         return "SHOW, EDIT, DELETE TICKET"
+
 
 @app.errorhandler(Exception)
 def unhandled_exception(e):
