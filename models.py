@@ -15,7 +15,7 @@ login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
 
-#local database 
+# local database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///closer'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -97,10 +97,11 @@ class Ticket(db.Model):
     def ticket_as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}  
 
-#user loaded function 
+#user loader function 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

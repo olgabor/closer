@@ -1,81 +1,51 @@
-{% extends 'layout.html' %}
-
+{% extends 'layout.html' %} 
 {% block body %}
-<script type="text/javascript">
-  $("#button").click(function () {
-            console.log(text = $("#input-email").val());
-            console.log($("#modal-email").html(text));
-        });
-</script>
-<div> 
-<div class="row" style='padding:5%;'>
-  <div class="col-md-7 text-center">
-     <img src="https://cdn.dribbble.com/users/916023/screenshots/14126676/media/114f29e9c6ce56e953fde35043a9fdea.png" 
-     style='width:100%; height:auto; margin:0%; border-radius: 2%; box-shadow: 1px 1px 1px #fde5e3;' alt="">
-  </div>
- 
-  <div class="col-md-5 d-flex p-2 bd-highlight align-items-center" style='background-color: beige;'>
-
-    <div> 
-      <div class="font-weight-bold " style='color: #dc3545;'> 
-    <h2> Relax, <strong>   Closer </strong>will take care of boring stuff. </h2>
-   </div>
-
-   
-      <div class="input-group" style='box-shadow: 3px 3px 3px rgba(1,1,1,.3);margin-bottom: 0; border: #eff3f7 1px; border-radius: 5px'>
-       
-        <input id='input-email' type="text" class="form-control" placeholder="Type your email" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <div class="input-group-append">
-          
-          <button class="btn bg-danger text-white" type="register-button" id="button" style='opacity: .9' data-toggle="modal"  data-dismiss="modal" data-target="#register">
-            REGISTER
-          </button> 
-    
-         </div> 
-        </div>
-   
-        <p class="text-right font-weight-light" style='opacity: .5' > Already registered? <a data-toggle="modal"  data-dismiss="modal" data-target="#login"  href="{{ url_for('login') }}"> Log in</a></p> 
-
-
-      <!-- Login Modal -->
-       <div class="modal fade" id='login' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1'>
-            <div class="modal-body">
-
-              <div class="column is-4 is-offset-4">
-                <h3 class="font-weight-bold text-center " style='color: #dc3545;'>Login</h3>
-                <div class="box">
-
-                  <form method="POST" action="/login">
-                    <div class="field">
-                        <div class="control">
-                            <input class="form-control" type="email" name="email" placeholder="Your Email" >
-                        </div>
-                    </div>
-                      <br>
-                    <div class="field">
-                        <div class="control">
-                            <input class="form-control" type="password" name="password" placeholder="Your Password" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            Remember me
-                        </label>
-                    </div>
-                    <button class="btn bg-danger text-white"> Login </button>
-                </form>
-                  </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-    </div>
-  </div>
-</div>
-
+<div>
+	<div class="row" style='padding:5%;'>
+		<div class="col-md-7 text-center"> <img src="https://cdn.dribbble.com/users/916023/screenshots/14126676/media/114f29e9c6ce56e953fde35043a9fdea.png" style='width:100%; height:auto; margin:0%; border-radius: 2%; box-shadow: 1px 1px 1px #fde5e3;' alt=""> </div>
+		<div class="col-md-5 d-flex p-2 bd-highlight align-items-center" style='background-color: beige;'>
+			<div>
+				<div class="font-weight-bold " style='color: #dc3545;'>
+					<h2> Relax, <strong>   Closer </strong>will take care of boring stuff. </h2> </div>
+				<div class="input-group" style='box-shadow: 3px 3px 3px rgba(1,1,1,.3);margin-bottom: 0; border: #eff3f7 1px; border-radius: 5px'>
+					<input id='input-email' type="text" class="form-control" placeholder="Type your email" aria-label="Recipient's username" aria-describedby="button-addon2">
+					<div class="input-group-append">
+						<button class="btn bg-danger text-white" type="register-button" id="button" style='opacity: .9' data-toggle="modal" data-dismiss="modal" data-target="#register"> REGISTER </button>
+					</div>
+				</div>
+				<p class="text-right font-weight-light" style='opacity: .5'> Already registered? <a data-toggle="modal" data-dismiss="modal" data-target="#login" href="{{ url_for('login') }}"> Log in</a></p>
+				<!-- Login Modal -->
+				<div class="modal fade" id='login' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content" style='border-radius: 15px ; background-color: beige; opacity: 1'>
+							<div class="modal-body">
+								<div class="column is-4 is-offset-4">
+									<h3 class="font-weight-bold text-center " style='color: #dc3545;'>Login</h3>
+									<div class="box">
+										<form method="POST" action="/login">
+											<div class="field">
+												<div class="control">
+													<input class="form-control" type="email" name="email" placeholder="Your Email"> </div>
+											</div>
+											<br>
+											<div class="field">
+												<div class="control">
+													<input class="form-control" type="password" name="password" placeholder="Your Password" autocomplete="off"> </div>
+											</div>
+											<div class="field">
+												<label class="checkbox">
+													<input type="checkbox"> Remember me </label>
+											</div>
+											<button class="btn bg-danger text-white"> Login </button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
 {% endblock %}
