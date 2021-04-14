@@ -11,7 +11,8 @@ Sign up for an account with Closer: <https://closer-sei.herokuapp.com/>
 * PostgreSQL 
 * SQLAlchemy
 * Bootstrap 
-* HTML 
+* HTML
+* jQuery 
 
 ### Features 
 - Create your own account
@@ -20,7 +21,23 @@ Sign up for an account with Closer: <https://closer-sei.herokuapp.com/>
 - Apply status and priority labels to each individual ticket 
 - Control your project productivity with updating and deleting ticket statuses and due dates 
 
- 
+## Run  
+```
+$ export FLASK_APP=js_example
+$ flask ru 
+Open http://127.0.0.1:5000 in a browser. 
+```
+## Install 
+```
+$ python3 -m venv venv
+$ . venv/bin/activate
+$ pip install -e .
+```
+## Run Unit Tests 
+```
+python -m unittest
+```
+
 ### Entity Relationship Diagram 
 ![ER_models_diagram](/images/ER_models_diagram.png?raw=true "ER_models_diagram") 
 
@@ -37,13 +54,7 @@ Sign up for an account with Closer: <https://closer-sei.herokuapp.com/>
 ![Closer_project_dashboard](/images/Closer_project_dashboard.png?raw=true "Closer_project_dashboard") 
 
  Create new ticket 
-
 ![Closer_add_new_ticket](/images/Closer_add_new_ticket.png?raw=true "Closer_add_new_ticket") 
-
-## Running Unit Tests 
-```
-python -m unittest
-```
 
 ## Planned Features
 
